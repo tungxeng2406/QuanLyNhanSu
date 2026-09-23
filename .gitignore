@@ -12,3 +12,8 @@ data/*.trace.db
 .vscode/settings.json
 .DS_Store
 Thumbs.db
+
+# Playwright output
+node_modules/
+playwright-report/
+test-results/

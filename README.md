@@ -21,3 +21,16 @@ mvn test -Dspring.profiles.active=test
 
 The `test` profile uses an in-memory H2 database and runs `schema.sql` plus `data.sql`,
 which creates the same deterministic 50 records.
+
+### Playwright E2E
+
+Install the browser once, start the local application, then run the isolated UI suite:
+
+```powershell
+npm install
+npx playwright install chromium
+npm run e2e
+```
+
+The suite runs with one worker, creates unique employee codes for CRUD tests, and
+deletes test records in cleanup so it does not modify the 50 seeded records.

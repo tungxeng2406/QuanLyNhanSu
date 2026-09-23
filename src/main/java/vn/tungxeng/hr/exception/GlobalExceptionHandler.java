@@ -26,6 +26,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({BusinessException.class, IllegalArgumentException.class, MethodArgumentTypeMismatchException.class})
     ResponseEntity<ErrorResponse> badRequest(Exception ex, HttpServletRequest request) {
+        if (ex instanceof BusinessException && ex.getMessage().contains("Ma nhan vien da ton tai")) {
+            return response(HttpStatus.CONFLICT, "EMP-409-001", ex.getMessage(), List.of(), request);
+        }
         String code = ex instanceof BusinessException && ex.getMessage().contains("Khoang ngay") ? "EMP-400-002" : "EMP-400-001";
         return response(HttpStatus.BAD_REQUEST, code, ex.getMessage(), List.of(), request);
     }

@@ -3,6 +3,7 @@
 ## 1. Muc tieu test
 - Bao phu 100% code FE theo thiet ke client-rendered HTML/CSS/JS goi REST API, gom: page/module JS, validation, script JS, luong export.
 - Cover day du: happy path, negative path, special case, exception case, compatibility case.
+- Automation smoke suite: `e2e/employee.spec.js` (Playwright, 6 repeatable tests).
 
 ## 2. Quy uoc icon ket qua
 - ✅ Pass
@@ -24,7 +25,7 @@
 ## 4. Testcase chi tiet
 | TC ID | Module | Scenario | Preconditions | Steps | Test Data | Expected Result | Priority | Status |
 |---|---|---|---|---|---|---|---|---|
-| FE-LIST-001 | LIST | Mo trang danh sach mac dinh | He thong co >= 1 employee | 1) Mo /employees | none | Hien thi bang danh sach, cot dung, khong loi render | High | ⏳ |
+| FE-LIST-001 | LIST | Mo trang danh sach mac dinh | He thong co >= 1 employee | 1) Mo /employees | none | Hien thi bang danh sach, cot dung, khong loi render | High | ✅ |
 | FE-LIST-002 | LIST | Danh sach rong | DB khong co employee | 1) Mo /employees | none | Hien thi empty state, khong vo layout | High | ⏳ |
 | FE-LIST-003 | LIST | Sort tang theo employeeCode | Co du lieu > 3 ban ghi | 1) Click sort employeeCode | mixed codes | Thu tu tang dung theo code | High | ⏳ |
 | FE-LIST-004 | LIST | Sort giam theo employeeCode | Co du lieu > 3 ban ghi | 1) Click sort employeeCode lan 2 | mixed codes | Thu tu giam dung theo code | High | ⏳ |
@@ -42,7 +43,7 @@
 | FE-SEARCH-009 | SEARCH | Clear filters | Dang co nhieu dieu kien | 1) Click Clear filters | none | Xoa 6 dieu kien, tai lai danh sach mac dinh | High | ⏳ |
 | FE-SEARCH-010 | SEARCH | Giu dieu kien khi chuyen trang | Dang co ket qua > 1 page | 1) Dien filter 2) Chuyen page 2 | mixed six params | Query params va ket qua van giu filter | High | ⏳ |
 | FE-CREATE-001 | CREATE | Mo form them moi | none | 1) Mo /employees/create | none | Render form day du field | High | ⏳ |
-| FE-CREATE-002 | CREATE | Tao moi thanh cong voi du lieu hop le | Ma nhan vien chua ton tai | 1) Dien form 2) Submit | valid payload | Goi POST /api/employees thanh cong (201), hien success message, khong reload trang, danh sach duoc refresh | High | ⏳ |
+| FE-CREATE-002 | CREATE | Tao moi thanh cong voi du lieu hop le | Ma nhan vien `FE-TC-002-001` chua ton tai | 1) Mo modal Add Employee 2) Dien 6 field 3) Submit | employeeCode=`FE-TC-002-001`; fullName=`FE Create Test`; gender=`OTHER`; dateOfBirth=`1990-01-10`; phone=`0912345678`; email=`fe.create.002@example.com` | Goi POST /api/employees voi payload hop le, HTTP 201, hien success message, dong modal va danh sach duoc refresh | High | ✅ |
 | FE-CREATE-003 | CREATE | Loi bat buoc employeeCode | none | 1) De trong employeeCode 2) Submit | employeeCode blank | Hien loi tai field employeeCode | High | ⏳ |
 | FE-CREATE-004 | CREATE | Loi bat buoc fullName | none | 1) De trong fullName 2) Submit | fullName blank | Hien loi tai field fullName | High | ⏳ |
 | FE-CREATE-005 | CREATE | Loi phone sai dinh dang | none | 1) phone=abc123 2) Submit | invalid phone | Hien loi dinh dang phone | High | ⏳ |
