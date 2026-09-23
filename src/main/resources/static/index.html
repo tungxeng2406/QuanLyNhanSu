@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Management</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar"><div><p class="eyebrow">HR OPERATIONS</p><h1>Employee Management</h1></div><button id="refreshButton" class="button secondary">Refresh</button></header>
+  <main class="shell">
+    <section class="toolbar"><form id="filterForm" class="filters"><label for="searchEmployeeCode">Employee Code</label><input id="searchEmployeeCode" placeholder="Filter by code"><label for="searchFullName">Full Name</label><input id="searchFullName" placeholder="Filter by name"><label for="searchGender">Gender</label><select id="searchGender"><option value="">All genders</option><option>MALE</option><option>FEMALE</option><option>OTHER</option></select><label for="searchDateOfBirth">Date of Birth</label><input id="searchDateOfBirth" type="date"><label for="searchPhone">Phone</label><input id="searchPhone" placeholder="Filter by phone"><label for="searchEmail">Email</label><input id="searchEmail" type="email" placeholder="Filter by email"><button type="button" id="resetButton" class="button secondary">Clear filters</button></form></section>
+    <div id="alert" class="alert" hidden></div>
+    <section class="panel"><div class="panel-heading"><div><p class="eyebrow">EMPLOYEE DIRECTORY</p><h2>Employee List</h2></div><div class="actions"><button id="exportButton" class="button secondary">Export CSV</button><button id="addButton" class="button primary">Add Employee</button></div></div><div class="table-wrap"><table><thead><tr><th>Employee Code</th><th>Full Name</th><th>Gender</th><th>Date of Birth</th><th>Phone</th><th>Email</th><th></th></tr></thead><tbody id="employeeRows"></tbody></table></div><div id="pagination" class="pagination"></div></section>
+    <div id="formPanel" class="modal" hidden><section class="modal-content"><div class="panel-heading"><div><p class="eyebrow">EMPLOYEE RECORD</p><h2 id="formTitle">Add Employee</h2></div><button type="button" id="closeFormButton" class="button secondary" onclick="document.getElementById('formPanel').hidden=true">Close</button></div><form id="employeeForm" class="employee-form"><input type="hidden" id="employeeId"><label>Employee Code<input id="employeeCode" required minlength="3" maxlength="20" pattern="[A-Z0-9_-]+"></label><label>Full Name<input id="fullName" required minlength="2" maxlength="150"></label><label>Gender<select id="gender"><option value="">Select</option><option>MALE</option><option>FEMALE</option><option>OTHER</option></select></label><label>Date of Birth<input id="dateOfBirth" type="date"></label><label>Phone<input id="phone" pattern="(\+84|0)[0-9]{9,10}"></label><label>Email<input id="email" type="email" maxlength="150"></label><div class="form-actions"><button type="submit" class="button primary">Save Employee</button></div></form></section></div>
+  </main>
+  <script src="/app.js?v=5"></script>
+</body>
+</html>
