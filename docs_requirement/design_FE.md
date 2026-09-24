@@ -1,5 +1,10 @@
 # Frontend Design
 
+## Mandatory coding conventions
+
+Apply [JavaScript coding rules](javascript-coding-rules.md) to UI code, E2E tests and helpers; apply [Java coding rules](java-coding-rules.md) to related backend changes. Follow [project adaptations and REQ-CODE-001–004](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+Exported functions, classes and complex methods/functions require JSDoc with applicable input/output types, asynchronous results and errors. Explain debounce, stale-response protection, URL state, CSV parsing and cleanup where non-obvious. Review naming, formatting and error handling too; do not exempt classic browser scripts because they have no exports.
+
 ## Structure
 
 - `src/main/resources/static/index.html`: single page shell and modal form.

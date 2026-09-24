@@ -1,5 +1,11 @@
 # Domain Model: Employee MVP
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](../docs_requirement/java-coding-rules.md) and [JavaScript coding rules](../docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Document Java entity/DTO responsibilities, invariants and mapping contracts; document complex JavaScript transformations. Apply conventions to related tests too. These requirements do not change the six-field business contract.
+
 ## 1. Domain scope
 
 The MVP Employee domain contains exactly six business fields used by the UI and public API:

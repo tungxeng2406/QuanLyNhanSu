@@ -6,6 +6,10 @@
 - PR phai mo ta pham vi thay doi va tac dong.
 
 ## 2. Required checks before merge
+- Mandatory: apply [Java coding rules](docs_requirement/java-coding-rules.md) and [JavaScript coding rules](docs_requirement/javascript-coding-rules.md) according to [project applicability and acceptance gates](docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+- Review production code, tests and scripts for naming, formatting, error handling, Javadoc/JSDoc and meaningful comments. Update documentation with behavior changes.
+- Include REQ-CODE-001 through REQ-CODE-004 in applicable PR traceability. Provide static-check results, reviewed files, outstanding violations and documented exceptions. Do not treat passing tests as coding-rule approval.
+- Static-analysis gate must include enforceable language/documentation rules; semantic accuracy requires reviewer verification. If tooling is missing, record the gap and manual review evidence rather than claiming automated compliance.
 - Build pass.
 - Unit/integration tests pass.
 - REST API tests pass (neu co thay doi BE endpoint) va FE tests pass (neu co thay doi FE flow).

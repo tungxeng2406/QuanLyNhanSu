@@ -51,6 +51,10 @@ Backend-only fields may remain for persistence/extension but are not rendered or
 
 ## 5. Security and quality
 
+- Mandatory: apply both [Java coding rules](java-coding-rules.md) and [JavaScript coding rules](javascript-coding-rules.md) to the corresponding production code, tests, helpers and scripts.
+- Follow [project applicability, adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions), requirements REQ-CODE-001 through REQ-CODE-004. Include Javadoc/JSDoc and meaningful comments, as well as the remaining convention rules.
+- Coding-rule compliance is part of Definition of Done. Passing functional tests alone is insufficient; record static-check and documentation-review evidence separately.
+
 - Validate all user input server-side.
 - Render API values with safe DOM APIs such as `textContent`; do not inject raw HTML.
 - Restrict CORS to configured local frontend origins.

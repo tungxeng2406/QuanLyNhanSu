@@ -1,5 +1,11 @@
 # Phase 1 - Cau Tra Loi (Draft Review)
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](java-coding-rules.md) and [JavaScript coding rules](javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Current coding-quality decision: both standards are mandatory, including production code, tests and scripts. This requirement supersedes any omission of coding conventions in the earlier draft answers; it does not claim implementation compliance.
+
 File nay tra loi 39 cau hoi trong `phase_1_phan_tich_yeu_cau.md`. Cac gia tri duoi day la de xuat de review truoc khi chot Phase 2.
 
 ## Du lieu

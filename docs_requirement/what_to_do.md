@@ -1,5 +1,12 @@
 # Quy Trình Phát Triển Phần Mềm Với AI
 
+## Coding rules bắt buộc cho mọi phase
+
+- Bắt buộc đọc và áp dụng [Java coding rules](java-coding-rules.md) và [JavaScript coding rules](javascript-coding-rules.md), theo [phạm vi, điều chỉnh riêng và tiêu chí nghiệm thu](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+- Áp dụng cho source, test, helper và script do dự án quản lý. Phải review Javadoc/JSDoc, comment giải thích logic không hiển nhiên và các quy tắc còn lại về naming, formatting, control flow, error handling.
+- Phase 1–2: đưa REQ-CODE-001–004 vào yêu cầu chất lượng và thiết kế; ghi nhận xung đột cụ thể. Phase 3: review cách áp dụng trước khi code. Phase 4: tuân thủ khi sinh/sửa code. Phase 5: báo cáo compliance riêng với test chức năng. Phase 6: đưa các kiểm tra tự động hóa được vào CI và checklist PR.
+- Không ghi PASS cho rule chưa kiểm tra; ghi rõ công cụ chưa cấu hình, vi phạm và ngoại lệ đã được review. Build/test xanh không thay thế review coding rules.
+
 ## 1. AI cần làm những gì?
 
 Quy trình đầy đủ thường gồm:
@@ -80,6 +87,7 @@ Chức năng:
 - Có responsive layout.
 
 Yêu cầu làm việc:
+0. Bắt buộc áp dụng docs_requirement/java-coding-rules.md và docs_requirement/javascript-coding-rules.md cho code/test/script tương ứng, theo docs/coding-rules.md. Bao gồm Javadoc/JSDoc, comment cần thiết và toàn bộ quy tắc phù hợp; báo cáo kết quả kiểm tra riêng với test chức năng.
 1. Trước tiên hãy phân tích yêu cầu và nêu các điểm còn thiếu.
 2. Đề xuất architecture và cấu trúc thư mục.
 3. Viết requirement specification.
@@ -142,6 +150,7 @@ hoặc khó test.
 
 ```text
 Dựa trên các tài liệu đã chốt, hãy generate project hoàn chỉnh.
+Bắt buộc đọc và áp dụng docs_requirement/java-coding-rules.md và docs_requirement/javascript-coding-rules.md theo docs/coding-rules.md, kể cả code test/helper/script. Bổ sung Javadoc/JSDoc và comment giải thích logic không hiển nhiên ngay khi viết code.
 Implement theo từng phase:
 1. Maven/configuration
 2. Database/entity/repository
@@ -158,6 +167,7 @@ Sau mỗi phase phải build/test và sửa lỗi trước khi sang phase tiếp
 
 ```text
 Hãy chạy toàn bộ unit, integration và Playwright E2E test.
+Kiểm tra riêng việc tuân thủ hai coding rules tại docs_requirement/java-coding-rules.md và docs_requirement/javascript-coding-rules.md theo docs/coding-rules.md; review Javadoc/JSDoc, ghi rõ bằng chứng, vi phạm và kiểm tra chưa chạy/chưa cấu hình.
 Đối chiếu kết quả với testcase matrix.
 Case nào pass, fail, chưa chạy phải ghi rõ.
 Với case fail, phân tích root cause, sửa code, chạy lại.

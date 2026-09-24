@@ -1,5 +1,11 @@
 # Run Project Guide
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](docs_requirement/java-coding-rules.md) and [JavaScript coding rules](docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Build/test instructions below do not prove coding-rule compliance. Run the configured static checks and document a separate Javadoc/JSDoc review. If a check is not configured, report it as not configured; do not claim it passed.
+
 ## 1. Prerequisites
 
 Required:

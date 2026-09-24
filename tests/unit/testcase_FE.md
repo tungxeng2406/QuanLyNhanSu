@@ -1,5 +1,11 @@
 # Frontend Test Cases: Employee MVP
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](../../docs_requirement/java-coding-rules.md) and [JavaScript coding rules](../../docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Frontend code, Playwright tests, helpers and report scripts must comply with the JavaScript standard; related Java changes follow the Java standard. Review JSDoc for exported helpers and complex functions plus meaningful comments. Add a separate REQ-CODE-001–004 compliance section to future reports; do not reinterpret existing functional results as coding-rule evidence.
+
 Execution status (2026-09-24): see [Phase 5 test report](../../docs/phase_5_test_report.md).
 Multiple case IDs in a test title do not imply that all expectations were asserted.
 

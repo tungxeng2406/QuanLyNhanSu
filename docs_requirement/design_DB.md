@@ -1,5 +1,9 @@
 # Database Design
 
+## Implementation quality requirements
+
+Database-related Java entities, repositories and integration tests must apply [Java coding rules](java-coding-rules.md); related JS scripts must apply [JavaScript coding rules](javascript-coding-rules.md). Follow [project applicability and documentation gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions). Document persistence contracts, transaction assumptions and fixture cleanup. These language conventions do not redefine SQL syntax or database constraints.
+
 ## Configuration
 
 - Local/dev: H2 file mode, `jdbc:h2:file:./data/hrdb;AUTO_SERVER=TRUE`.

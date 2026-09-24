@@ -1,5 +1,11 @@
 # Database Test Cases: Employee MVP
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](../../docs_requirement/java-coding-rules.md) and [JavaScript coding rules](../../docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Apply the Java standard to database integration tests, entities and repositories and the JavaScript standard to related JS tooling. Review documentation for transactions, fixtures and cleanup. Report REQ-CODE-001–004 separately from database assertions; SQL files are not Java/JavaScript code.
+
 Execution status (2026-09-24): see [Phase 5 test report](../../docs/phase_5_test_report.md).
 The report distinguishes full PASS from partial and not-run coverage.
 

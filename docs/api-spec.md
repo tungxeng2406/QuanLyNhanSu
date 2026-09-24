@@ -1,5 +1,11 @@
 # Employee Management API Specification
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](../docs_requirement/java-coding-rules.md) and [JavaScript coding rules](../docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Java controllers, DTOs and services must document API parameters, responses and error contracts in Javadoc. JavaScript API consumers and complex helpers require applicable JSDoc. Keep source documentation aligned with this API specification.
+
 ## 1. Contract scope
 
 - Base path: `/api/employees`.

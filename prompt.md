@@ -234,3 +234,12 @@ chỉ trả lời, ko edit gì
 ---------------------------------------------------------------------------------
 21) lab_4_1_test_harness_analyze.md
 hãy tạo file lab_4_1_test_harness_analyze.md, và add tất cả nội dung vào
+
+
+
+---------------------------------------------------------------------------------
+22) 
+hiện tại source code java và javascript chưa apply coding rule (javadoc, comment, ... )
+giải thích lý do tại sao? (trong requirement ko mô tả hay sao?)
+docs/java-coding-rules.md
+docs/javascript-coding-rules.md
