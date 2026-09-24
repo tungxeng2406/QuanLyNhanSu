@@ -213,3 +213,24 @@ Mô tả tổng quan về dự án, chức năng của dự án, cách run, các
 
 2) Chức năng mở rộng (Import file):
 Mô tả thêm về chức năng ở đây
+
+
+
+---------------------------------------------------------------------------------
+19)
+Hãy giúp tôi run test case "tests/unit/testcase_FE.md",
+Tạo kết quả vào file "tests/unit_result/testcasse_FE_YYYYMMDD_hhmmss.md"
+
+
+
+---------------------------------------------------------------------------------
+20) lab_4_1_test_harness.md
+hãy giúp tôi phân tích file này,
+file này yêu cầu gì, và tôi sẽ cần làm gì.
+chỉ trả lời, ko edit gì
+
+
+
+---------------------------------------------------------------------------------
+21) lab_4_1_test_harness_analyze.md
+hãy tạo file lab_4_1_test_harness_analyze.md, và add tất cả nội dung vào
