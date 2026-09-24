@@ -217,8 +217,7 @@ Mô tả thêm về chức năng ở đây
 
 
 ---------------------------------------------------------------------------------
-19)
-Hãy giúp tôi run test case "tests/unit/testcase_FE.md",
+19) Hãy giúp tôi run test case "tests/unit/testcase_FE.md",
 Tạo kết quả vào file "tests/unit_result/testcasse_FE_YYYYMMDD_hhmmss.md"
 
 
@@ -238,7 +237,13 @@ hãy tạo file lab_4_1_test_harness_analyze.md, và add tất cả nội dung v
 
 
 ---------------------------------------------------------------------------------
-22) 
+22) lab_4_1_test_harness_analyze.md
+tôi mới tạo branch main_thanhtung,
+hãy mô tả các bước cần thực hiện giúp tôi, và liệt kê những chỗ chưa rõ cần hỏi lại
+
+
+---------------------------------------------------------------------------------
+23) 
 hiện tại source code java và javascript chưa apply coding rule (javadoc, comment, ... )
 giải thích lý do tại sao? (trong requirement ko mô tả hay sao?)
 docs/java-coding-rules.md
