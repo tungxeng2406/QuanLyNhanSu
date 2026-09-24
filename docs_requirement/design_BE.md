@@ -1,5 +1,10 @@
 # Backend Design
 
+## Mandatory coding conventions
+
+Apply [Java coding rules](java-coding-rules.md) to backend code and tests and [JavaScript coding rules](javascript-coding-rules.md) to any accompanying JS scripts/tests. Follow [project adaptations and REQ-CODE-001–004](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+Document class/interface responsibilities and API/service contracts with Javadoc, including applicable parameters, results and exceptions. Explain non-obvious search predicates, normalization, transactions and CSV handling. Review naming, formatting and error handling as well as comments before accepting implementation.
+
 ## Architecture
 
 `Controller -> Service -> Repository -> H2`

@@ -1,5 +1,11 @@
 # Phase 3: Review Thiet Ke
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](java-coding-rules.md) and [JavaScript coding rules](javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Additional mandatory design-review criteria: verify traceability to REQ-CODE-001–004, planned Javadoc/JSDoc contracts, comments for non-obvious behavior and recorded rule conflicts. Earlier review findings are historical and do not certify current coding-rule compliance.
+
 ## 1. Pham vi review
 
 Review duoc thuc hien tren:

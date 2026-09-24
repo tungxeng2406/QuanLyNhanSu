@@ -1,5 +1,11 @@
 # Phase 1: Phan Tich Yeu Cau
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](java-coding-rules.md) and [JavaScript coding rules](javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Current clarification: applying both standards is mandatory, not an open optional choice. During analysis identify affected Java/JS files, documentation needs and specific conflicts requiring a recorded decision.
+
 ## 1. Pham vi MVP
 
 Ung dung quan ly nhan su cho Admin/HR noi bo, gom:

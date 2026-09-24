@@ -2,6 +2,8 @@
 
 ## JavaScript Coding Convention
 
+> Project applicability: this standard is mandatory for project-owned JavaScript source, tests, helpers and scripts, including `.js`, `.cjs` and `.mjs`. Apply it together with the [Java standard](java-coding-rules.md) for Java files and the [project adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions). Preserve each file's browser/Node runtime and documented module format; examples are not a migration instruction. Documentation updates alone do not certify source compliance.
+
 | Code | STD-JS-01 | 
  | ----- | ----- | 
 | **Version** | 1.0 | 

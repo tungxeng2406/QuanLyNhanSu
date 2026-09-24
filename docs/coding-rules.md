@@ -1,5 +1,37 @@
 # Coding Rules And Validation Standards
 
+## Mandatory Java and JavaScript conventions
+
+Both standards are mandatory project inputs, not optional references:
+
+- [Java Coding Convention](../docs_requirement/java-coding-rules.md).
+- [JavaScript Coding Convention](../docs_requirement/javascript-coding-rules.md).
+
+Apply the relevant language standard to all project-owned production code, unit/integration/E2E tests, helpers and scripts, including `.java`, `.js`, `.cjs` and `.mjs`. Exclude third-party dependencies, generated code and generated reports. Existing code is in scope; functional test success does not establish coding-rule compliance.
+
+### Documentation and implementation comments
+
+- Java: document classes, interfaces, constructors, methods and fields as required by the Java standard. Public contracts must describe responsibilities, parameters, return values and relevant exceptions; use applicable Javadoc tags. An override may inherit an adequate documented contract; document additional behavior explicitly.
+- JavaScript: exported functions, classes and complex methods must have JSDoc, including applicable parameter types, return types, asynchronous results and thrown errors. This includes complex functions inside classic scripts and closures, even without an `export` keyword.
+- Explain non-obvious algorithms, validation decisions, race handling, CSV escaping and cleanup behavior where needed. Comments must explain intent and constraints, not merely repeat statements.
+- Update documentation when behavior changes. Do not invent authors, dates, copyright ownership or change history to populate example headers.
+- Apply the rest of both standards too: naming, formatting, declarations, control flow, modularity and error handling. Adding comments alone is insufficient.
+
+### Project-specific adaptations and conflicts
+
+- Keep the explicit project baseline: Java 17, Spring Boot 3, package `vn.tungxeng.hr`, vanilla browser JavaScript and the existing six-field API contract. The Java standard's sample organization/package prefix does not replace the project's specified package.
+- Respect the runtime of each file: browser scripts and Node/CommonJS test tooling differ. Examples using another module system or framework are not a requirement to migrate this project.
+- Record any further conflict or exception with the affected rule, reason, scope and review decision in the design/PR. Do not silently discard rules or infer a blanket exemption for tests or legacy code.
+
+### Acceptance and evidence
+
+- **REQ-CODE-001:** Java source and tests comply with the Java convention and documented project adaptations.
+- **REQ-CODE-002:** JavaScript source, tests and scripts comply with the JavaScript convention and documented project adaptations.
+- **REQ-CODE-003:** Review verifies Javadoc/JSDoc and meaningful implementation comments against actual behavior.
+- **REQ-CODE-004:** Build/test and coding-rule checks are separate acceptance gates. Configure static checks for enforceable rules and review semantic documentation manually; CI must fail on configured mandatory violations before merge.
+- Reports/PRs must list reviewed files, rules checked, commands actually executed, violations, exceptions and checks not yet configured/run. Never label unexecuted checks PASS.
+- This document defines required behavior, not proof of implementation. Updating documentation does not add a linter, CI workflow or missing source comments. Until reviewed and verified, current source compliance remains unconfirmed.
+
 ## 1. General coding rules
 - Su dung Java 17, Maven va Spring Boot 3.x.
 - Package goc mac dinh la `vn.tungxeng.hr`.

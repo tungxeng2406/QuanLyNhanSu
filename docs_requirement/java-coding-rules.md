@@ -1,6 +1,8 @@
 # STANDARD  
 ## Java Coding Convention
 
+> Project applicability: this standard is mandatory for project-owned Java source and tests. Apply it together with the [JavaScript standard](javascript-coding-rules.md) for JavaScript files and the [project adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions). The project root package remains `vn.tungxeng.hr`; organization-specific examples below do not override that baseline. Documentation updates alone do not certify source compliance.
+
 | Code | 09be-HD/PM/HDCV/F |
 | :--- | :--- |
 | **Version** | 1/1 |

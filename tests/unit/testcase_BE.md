@@ -1,5 +1,11 @@
 # Backend Test Cases: Employee Management API
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](../../docs_requirement/java-coding-rules.md) and [JavaScript coding rules](../../docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Backend source and test code must comply with the Java standard; accompanying JS tooling follows the JavaScript standard. Alongside this functional matrix, report REQ-CODE-001–004 review evidence: files reviewed, Javadoc/JSDoc checks, static-check results, violations and exceptions. Functional PASS does not imply convention PASS.
+
 Execution status (2026-09-24): see [Phase 5 test report](../../docs/phase_5_test_report.md).
 The report distinguishes full PASS from partial and not-run coverage.
 

@@ -1,5 +1,11 @@
 # Phase 3 Review Update: Phuong An Duoc Chot
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](java-coding-rules.md) and [JavaScript coding rules](javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](../docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Baseline addition: applying both conventions is required for implementation and acceptance. Review Java documentation contracts, JavaScript JSDoc, meaningful comments and the remaining formatting/naming/error-handling rules. Missing documentation or unverified checks must remain explicit outstanding work.
+
 ## 1. Muc tieu
 
 Chon phuong an phu hop nhat de dua MVP ve mot baseline nhat quan, de implement, de test va it rui ro nhat.

@@ -1,5 +1,11 @@
 ## 1) HR Management
 
+## Mandatory coding-rule compliance
+
+Apply both [Java coding rules](docs_requirement/java-coding-rules.md) and [JavaScript coding rules](docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](docs/coding-rules.md#mandatory-java-and-javascript-conventions).
+
+Before implementation or review, read both standards. Coding-rule compliance is mandatory for production code, tests and scripts. Include Javadoc/JSDoc and meaningful comments, not only functional tests.
+
 ### Tổng quan dự án
 
 HR Management là ứng dụng web quản lý thông tin nhân viên, hỗ trợ tra cứu và cập
