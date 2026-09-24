@@ -14,7 +14,7 @@
 - Moi exception nghiep vu phai co ma loi va message ro rang, tra ve qua JSON ErrorResponse (@RestControllerAdvice).
 - FE (HTML/CSS/JS) va BE hoan toan tach biet, chi giao tiep qua REST API JSON.
 
-## 2. Field-level validation matrix
+## 2. Public Employee field validation matrix
 
 | Field | Required | Min | Max | Format/Regex | Notes |
 |---|---|---|---|---|---|
@@ -24,13 +24,8 @@
 | dateOfBirth | No | - | - | yyyy-MM-dd | Khong lon hon ngay hien tai |
 | phone | No | 10 | 12 | ^(\+84|0)[0-9]{9,10}$ | Bo ky tu trang truoc khi validate |
 | email | No | 5 | 150 | email format | lowercase de nghi |
-| address | No | 0 | 255 | free text | Trim |
-| department | No | 0 | 100 | free text | Trim |
-| position | No | 0 | 100 | free text | Trim |
-| hireDate | No | - | - | yyyy-MM-dd | Khuyen nghi >= dateOfBirth + 18y |
-| status | Yes | - | 20 | ACTIVE/INACTIVE/RESIGNED | Enum string |
-| baseSalary | No | 0 | 18,2 | decimal >= 0 | Scale = 2 |
-| note | No | 0 | 500 | free text | Trim |
+
+MVP khong validate hoac expose cac field Employee ngoai 6 field tren.
 
 ## 3. Validation implementation rules
 - FE validation:
@@ -40,6 +35,8 @@
 	- Dung Jakarta Validation tren request DTO (@Valid trong @RestController).
 	- Validation nghiep vu (unique code, search value) dat trong Service.
 	- Loi validation tra ve JSON ErrorResponse voi danh sach field errors.
+- Request DTO public chi gom `employeeCode`, `fullName`, `gender`, `dateOfBirth`, `phone`, `email`.
+- Khong them field an vao request de tranh contract FE/BE bi lech.
 - DB validation:
 	- Dung NOT NULL, UNIQUE, type constraints.
 
@@ -59,8 +56,9 @@
 - CSV encoding: UTF-8 BOM.
 - Delimiter: comma (,).
 - Quote char: double quote.
+- Header MVP: `employeeCode,fullName,gender,dateOfBirth,phone,email`.
+- Chi export 6 public Employee fields.
 - Date format khi xuat: yyyy-MM-dd.
-- So thuc khi xuat: 2 chu so thap phan.
 
 ## 7. Security input standards
 - BE tra ve JSON thuan, khong render HTML; FE chiu trach nhiem escape du lieu truoc khi chen vao DOM (tranh dung innerHTML voi du lieu tho, uu tien textContent hoac ham escape).

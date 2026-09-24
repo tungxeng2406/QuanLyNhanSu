@@ -52,8 +52,7 @@ Test data for the next reproducible run:
 	"gender": "OTHER",
 	"dateOfBirth": "1990-01-10",
 	"phone": "0912345678",
-	"email": "fe.create.002@example.com",
-	"status": "ACTIVE"
+	"email": "fe.create.002@example.com"
 }
 ```
 

@@ -1,91 +1,188 @@
-1)
+1) Chỉ có ý tưởng, nhưng chưa biết bắt đầu từ đâu?
+Prompt:
 Tôi muốn hỏi câu hỏi liên quan tới quy trình phát triển phần mềm (dựa trên AI):
-
 Bạn là master về lập trình
 Từ 1 ý tưởng ban đầu, tôi cần viết prompt gì, để AI có thể hiểu và làm full luồng giúp tôi.
-
 Ví dụ: tôi muốn tạo ứng dụng quản lý nhân sự.
 Dựa trên câu hỏi đó, AI sẽ làm những gì , từ lúc chưa có j, đến lúc tạo sản phẩm hoàn chỉnh
 
+Result:
+-> what-to-do.md
 
-------------------------------------------------------------------------
 
 
-```
-Bạn là một Senior Software Engineering
-
-Tôi muốn xây dựng ứng dụng: QUẢN LÝ NHÂN SỰ.
-
-Mục tiêu:
-- Quản lý danh sách nhân sự.
-- Tìm kiếm và lọc nhân sự.
-- Thêm, sửa, xóa nhân sự.
-- Xem chi tiết.
-- Export dữ liệu.
-- Có dữ liệu mẫu để demo.
-- Có test và tài liệu đầy đủ.
-
-Người dùng:
-- Admin/HR nội bộ.
-
-Stack mong muốn:
-- Backend: Java 17, Spring Boot 3.x, Maven.
-- Architecture: REST API, Controller/Service/Repository/DTO.
-- Database: H2.
-- Local: H2 file mode.
-- Test: H2 in-memory.
-- Seed data: data.sql tạo 50 record khi database rỗng.
-- Frontend: HTML/CSS/JavaScript thuần.
-- Static frontend: src/main/resources/static.
-- Không dùng Thymeleaf.
-- Package gốc: vn.tungxeng.hr.
-
-Các field hiển thị trên UI:
-- employeeCode: bắt buộc, unique.
-- fullName: bắt buộc.
-- gender.
-- dateOfBirth.
-- phone.
-- email.
-
-Chức năng:
-- Danh sách có pagination.
-- Có 6 điều kiện search riêng theo 6 field.
-- Khi input/change thay đổi thì tự động gọi API.
-- Không cần nút Search.
-- Có Clear filters.
-- Có modal Add/Edit Employee.
-- Có validation client-side và server-side.
-- Có CSV export.
-- Có API error response chuẩn hóa.
-- FE phải chống XSS bằng textContent.
-- Có responsive layout.
-
-Yêu cầu làm việc:
-1. Trước tiên hãy phân tích yêu cầu và nêu các điểm còn thiếu.
-2. Đề xuất architecture và cấu trúc thư mục.
-3. Viết requirement specification.
-4. Viết domain model và database design.
-5. Viết API specification.
-6. Viết FE/BE design.
-7. Viết testcase matrix.
-8. Chỉ sau khi tôi xác nhận thiết kế thì mới generate code.
-9. Khi generate code, tạo project chạy được.
-10. Sau mỗi phần code, phải chạy validation phù hợp.
-11. Không được bỏ qua test.
-12. Nếu phát hiện lỗi, tự sửa và chạy lại test.
-13. Không sửa hoặc xóa thay đổi hiện có nếu chưa được tôi cho phép.
-14. Cuối cùng cung cấp:
-   - danh sách file đã tạo/sửa;
-   - lệnh chạy;
-   - kết quả test;
-   - các vấn đề còn tồn tại;
-   - hướng dẫn deploy.
-
-Hãy bắt đầu bằng Phase 1: phân tích yêu cầu và danh sách câu hỏi cần tôi xác nhận.
-Không generate code trong phase này.
+---------------------------------------------------------------------------------
+2) ### Phase 1: Phân tích
+Prompt:
+```text
+Hãy phân tích ý tưởng ứng dụng quản lý nhân sự.
+Xác định actor, use case, business rule, scope MVP,
+rủi ro và các câu hỏi cần làm rõ.
+Chưa viết code.
 ```
 
+Result:
+-> phase_1_phan_tich_yeu_cau.md
 
-------------------------------------------------------------------------
-2) 
+
+
+---------------------------------------------------------------------------------
+3) ### Phase 1: Phân tích (continue)
+Prompt:
+hãy tạo file phase_1_phan_tich_yeu_cau_answer.md giúp tôi
+sau đó trả lời giúp tôi 39 câu hỏi đó, tôi sẽ review lại
+
+Result:
+-> phase_1_phan_tich_yeu_cau_answer.md
+
+
+
+---------------------------------------------------------------------------------
+4) ### Phase 2: Đặc tả
+Prompt:
+```text
+Dựa trên yêu cầu đã chốt, hãy viết:
+- requirement.md
+- domain-model.md
+- database design
+- API specification
+- frontend/backend design
+- testcase matrix
+```
+
+Result:
+requirement.md
+domain-model.md
+design_DB.md
+api-spec.md
+design_FE.md
+design_BE.md
+testcase_BE_v2.md
+testcase_DB_v2.md
+testcase_FE_v2.md
+
+
+
+---------------------------------------------------------------------------------
+5) ### Phase 3: Review thiết kế
+
+```text
+Hãy review toàn bộ đặc tả.
+Tìm các điểm mâu thuẫn, thiếu, không implement được
+hoặc khó test.
+Đề xuất chỉnh sửa trước khi code.
+```
+
+hãy tạo file phase_3_review_thiet_ke.md, và note tất cả review vào
+
+
+
+---------------------------------------------------------------------------------
+6) ### Phase 3: Review thiết kế (continue)
+
+hãy chọn phương án tốt nhất , phù hợp nhất giúp tôi, và add vào file phase_3_review_thiet_ke_update.md
+
+
+
+---------------------------------------------------------------------------------
+7) api-spec.md
+file này đã mô tả rõ ràng đặc tả api chưa, mô tả cụ thể các field request và response?
+hãy update file đầy đủ và chi tiết nhất giúp tôi
+
+
+
+---------------------------------------------------------------------------------
+8) domain-model.md
+file này có nhiều field của Employee ko còn được sử dụng, hãy update đầy đủ chi tiết nhất giúp tôi
+
+
+
+---------------------------------------------------------------------------------
+9) coding-rules.md
+file này có còn cần thiết ko, nếu ko cần thì xóa đi, còn cần thì hãy update detail nội dung giúp tôi
+
+
+---------------------------------------------------------------------------------
+10) testcase_FE.md, testcase_BE.md, testcase_DB.md
+3 file này quá sơ sài, ko thể dựa vào đây để test chi tiết.
+File có cấu trúc là table, với mô tả chi tiết mỗi case:
+- Làm chức năng gì?
+- Validate data như thế nào?
+- Input data là gì?
+- Output data là gì?
+...
+
+Hãy update full nội  dung 3 file này,
+
+
+
+---------------------------------------------------------------------------------
+11) Folder docs, unit
+Dựa vào tất cả thông tin được mô tả, có đủ thông tin generate code chưa.
+Còn logic nào ko rõ, hoặc cần confirm ko?
+
+
+---------------------------------------------------------------------------------
+12) Folder docs, unit
+
+Hãy update những logic này giúp tôi:
+1. Xóa hoàn toàn các field cũ khỏi database/entity: Có.
+2. EmployeeResponse gồm 6 field + id nội bộ: Có.
+3. Thêm sort control, debounce 300ms, URL search state và disable Save: Có.
+
+
+---------------------------------------------------------------------------------
+13) Implementation decision
+
+Đã triển khai các quyết định cuối cùng:
+
+- Xóa các field Employee cũ khỏi Entity, DTO, schema, seed data và CSV: `address`, `department`, `position`, `hireDate`, `baseSalary`, `note`, `status`, timestamps.
+- Public `EmployeeResponse` gồm `id` và 6 field: `employeeCode`, `fullName`, `gender`, `dateOfBirth`, `phone`, `email`.
+- `employeeCode` và `fullName` là bắt buộc; các field còn lại là tùy chọn theo validation đã chốt.
+- Thêm sort control trên header bảng.
+- Text search debounce 300ms; gender/date search theo event `change`.
+- Lưu 6 filter, page, size và sort trên URL; hỗ trợ reload và browser back/forward.
+- Disable nút Save trong lúc POST/PUT để chống double-submit.
+- CSV chỉ export 6 field public.
+- Playwright E2E dùng dữ liệu random và cleanup sau mỗi test.
+
+Các lệnh validation sau implementation:
+
+```powershell
+mvn test '-Dspring.profiles.active=test'
+npm run e2e
+```
+
+
+
+---------------------------------------------------------------------------------
+14) hãy tạo file run_project.md để giúp tôi cách run project
+
+
+
+---------------------------------------------------------------------------------
+15) ### Phase 5: Test và hoàn thiện
+
+```text
+Hãy chạy toàn bộ unit, integration và Playwright E2E test.
+Đối chiếu kết quả với testcase matrix.
+Case nào pass, fail, chưa chạy phải ghi rõ.
+Với case fail, phân tích root cause, sửa code, chạy lại.
+Sau cùng tạo test report và cập nhật tài liệu.
+```
+
+---------------------------------------------------------------------------------
+16) Thêm button "Import file"
+Button này có chức năng import CSV, gồm các thông tin:
++ No
++ Tên mặt hàng
++ Số lượng
++ Đơn giá
++ VAT (Mặt hàng)
+
+Khi user chọn file xong, thì show modal với các cột đó, thêm 2 cột:
++ Tổng = số lượng * đơn giá
++ VAT = Tổng * %VAT(Mặt hàng)
+
+Modal cũng có button Export CSV.
+

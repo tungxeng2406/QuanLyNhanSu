@@ -1,127 +1,98 @@
-# Testcase BE - HR Management Backend (Spring Boot REST API)
+# Backend Test Cases: Employee Management API
 
-## 1. Muc tieu test
-- Dat 100% do bao phu code BE trong pham vi module HR management (REST Controller, Service, Repository query logic, Export, Exception Handler).
-- Cover day du: happy path, negative path, special case, exception, boundary, security input.
+Execution status (2026-09-24): see [Phase 5 test report](../../docs/phase_5_test_report.md).
+The report distinguishes full PASS from partial and not-run coverage.
 
-## 2. Quy uoc icon ket qua
-- ✅ Pass
-- ❌ Fail
-- ⏳ Chua chay
+## 1. Test standard
 
-## 3. Pham vi va cach do coverage
-| Thanh phan | Cong cu goi y | Muc tieu |
-|---|---|---|
-| Unit test Service/Utils | JUnit 5 + Mockito | 100% line + branch |
-| REST API test Controller | Spring MockMvc (JSON) hoac WebTestClient | 100% endpoint branch |
-| Integration Repository | @DataJpaTest + H2 | 100% query branch |
-| Coverage report | JaCoCo | 100% line + branch trong package muc tieu |
+- Scope: Spring Boot REST Controller, Service, Repository specification, CSV export and error handler.
+- Test tools: JUnit 5, Mockito, MockMvc, `@DataJpaTest`, H2 in-memory.
+- Default base URL: `/api/employees`.
+- Dates: `yyyy-MM-dd`.
+- Public request fields: `employeeCode`, `fullName`, `gender`, `dateOfBirth`, `phone`, `email`.
+- No public request/response field named `status` or other removed Employee fields.
+- Expected JSON assertions must prefer HTTP status and `errorCode` over localized message text.
+- Test data created by a test must be cleaned up in `finally` or transaction rollback.
 
-## 4. Testcase Controller (MockMvc/WebTestClient - JSON)
-| TC ID | Endpoint | Scenario | Preconditions | Request | Expected | Priority | Status |
-|---|---|---|---|---|---|---|---|
-| BE-CTL-001 | GET /api/employees | Lay danh sach mac dinh | Co data | query rong | HTTP 200, body JSON co page data (content, totalElements...) | High | ⏳ |
-| BE-CTL-002 | GET /api/employees | Search theo employeeCode | Co data match | employeeCode=E001 | HTTP 200, ket qua dung filter | High | ⏳ |
-| BE-CTL-003 | GET /api/employees | Ket hop 6 dieu kien search | Co data da dang | employeeCode,fullName,gender,dateOfBirth,phone,email | HTTP 200, ket qua dung giao nhau AND | High | ⏳ |
-| BE-CTL-004 | GET /api/employees | Query params khong hop le | none | page=-1,size=0 | HTTP 200/400 theo quy dinh, khong 500 | Medium | ⏳ |
-| BE-CTL-005 | OPTIONS /api/employees | CORS preflight tu FE origin | CORS da cau hinh | preflight request | HTTP 200/204, header Access-Control-Allow-Origin dung origin FE | Medium | ⏳ |
-| BE-CTL-006 | POST /api/employees | Tao moi thanh cong | payload hop le | JSON body valid | HTTP 201, body EmployeeDto dung du lieu | High | ⏳ |
-| BE-CTL-007 | POST /api/employees | Validation fail | payload thieu fullName | JSON body invalid | HTTP 400, body ErrorResponse co field errors | High | ⏳ |
-| BE-CTL-008 | POST /api/employees | Duplicate employeeCode | Co code trung | JSON body duplicate | HTTP 409, body ErrorResponse EMP-409-001 | High | ⏳ |
-| BE-CTL-009 | GET /api/employees/{id} | Xem chi tiet thanh cong | id ton tai | id valid | HTTP 200, body EmployeeDto | High | ⏳ |
-| BE-CTL-010 | GET /api/employees/{id} | Xem chi tiet khong ton tai | id invalid | id not found | HTTP 404, body ErrorResponse EMP-404-001 | High | ⏳ |
-| BE-CTL-011 | GET /api/employees/{id} | Lay du lieu prefill cho form sua (FE) | id ton tai | id valid | HTTP 200, body EmployeeDto day du field de FE bind vao form | High | ⏳ |
-| BE-CTL-012 | PUT /api/employees/{id} | Sua thanh cong | id ton tai | JSON body valid | HTTP 200, body EmployeeDto da cap nhat | High | ⏳ |
-| BE-CTL-013 | PUT /api/employees/{id} | Sua fail validation | id ton tai | JSON body invalid | HTTP 400, body ErrorResponse co field errors | High | ⏳ |
-| BE-CTL-014 | PUT /api/employees/{id} | Sua fail do duplicate code | id ton tai va code trung | JSON body duplicate | HTTP 409, body ErrorResponse EMP-409-001 | High | ⏳ |
-| BE-CTL-015 | DELETE /api/employees/{id} | Xoa thanh cong | id ton tai | id valid | HTTP 204 No Content | High | ⏳ |
-| BE-CTL-016 | DELETE /api/employees/{id} | Xoa id khong ton tai | id invalid | id not found | HTTP 404, body ErrorResponse EMP-404-001 | High | ⏳ |
-| BE-CTL-017 | GET /api/employees/export/csv | Export csv thanh cong | Co data | filter hop le | HTTP 200, content-type csv, header file name dung | High | ⏳ |
-| BE-CTL-018 | GET /api/employees/export/csv | Export voi ket qua rong | Khong co data match | email=no-match | HTTP 200, file rong hop le hoac message theo quy dinh | Medium | ⏳ |
-| BE-CTL-019 | GET /api/employees/export/xlsx | Export xlsx (optional) | Feature bat | filter hop le | HTTP 200, content-type xlsx | Medium | ⏳ |
-| BE-CTL-020 | Multi endpoint | Special chars + Unicode input | none | payload ten co dau | Khong loi encoding, JSON luu/tra dung | Medium | ⏳ |
+## 2. Field validation reference
 
-## 5. Testcase Service (Unit test)
-| TC ID | Method | Scenario | Input | Expected | Priority | Status |
-|---|---|---|---|---|---|---|
-| BE-SVC-001 | search(criteria,pageable) | Search khong filter | criteria rong | Tra Page dung kich thuoc | High | ⏳ |
-| BE-SVC-002 | search(criteria,pageable) | Search day du filter | criteria full | Query dung branch ket hop | High | ⏳ |
-| BE-SVC-003 | getById(id) | Tim thay employee | id ton tai | Tra dto dung mapping | High | ⏳ |
-| BE-SVC-004 | getById(id) | Khong tim thay | id invalid | Nem NotFoundException | High | ⏳ |
-| BE-SVC-005 | create(req) | Tao moi thanh cong | req hop le | Luu DB va tra dto | High | ⏳ |
-| BE-SVC-006 | create(req) | Duplicate code | req code trung | Nem BusinessException | High | ⏳ |
-| BE-SVC-007 | create(req) | Trim/chuan hoa input | req co khoang trang | Du lieu duoc xu ly dung quy dinh | Medium | ⏳ |
-| BE-SVC-008 | update(id,req) | Cap nhat thanh cong | id ton tai + req hop le | Save thanh cong | High | ⏳ |
-| BE-SVC-009 | update(id,req) | id khong ton tai | id invalid | Nem NotFoundException | High | ⏳ |
-| BE-SVC-010 | update(id,req) | Duplicate code khi sua | req trung ma voi employee khac | Nem BusinessException | High | ⏳ |
-| BE-SVC-011 | delete(id) | Xoa thanh cong | id ton tai | Ban ghi bi xoa | High | ⏳ |
-| BE-SVC-012 | delete(id) | Xoa id khong ton tai | id invalid | Nem NotFoundException | High | ⏳ |
-| BE-SVC-013 | exportCsv(criteria) | Export co du lieu | criteria match | byte[] csv khong rong + header dung | High | ⏳ |
-| BE-SVC-014 | exportCsv(criteria) | Export du lieu rong | criteria no-match | byte[] csv hop le (chi header/empty) | Medium | ⏳ |
-| BE-SVC-015 | exportCsv(criteria) | Exception IO trong luong export | gia lap writer error | Nem/handle exception theo quy dinh | High | ⏳ |
-| BE-SVC-016 | exportXlsx(criteria) | Export xlsx (optional) | criteria match | byte[] xlsx hop le | Medium | ⏳ |
-
-## 6. Testcase Repository (Integration @DataJpaTest)
-| TC ID | Repository | Scenario | Data setup | Expected | Priority | Status |
-|---|---|---|---|---|---|---|
-| BE-REP-001 | existsByEmployeeCode | Code ton tai | Seed E001 | Tra true | High | ⏳ |
-| BE-REP-002 | existsByEmployeeCode | Code khong ton tai | Seed E001 | Tra false | High | ⏳ |
-| BE-REP-003 | findByEmployeeCode | Tim thay | Seed E001 | Optional present | High | ⏳ |
-| BE-REP-004 | findByEmployeeCode | Khong tim thay | Seed E001 | Optional empty | Medium | ⏳ |
-| BE-REP-005 | Specification search | Match employeeCode | Seed nhieu ban ghi | Tra dung tap ket qua | High | ⏳ |
-| BE-REP-006 | Specification search | Match fullName/gender | Seed nhieu ban ghi | Chi tra ban ghi dung dieu kien | High | ⏳ |
-| BE-REP-007 | Specification search | Match dateOfBirth | Seed nhieu ban ghi | Chi tra ngay sinh match exact | High | ⏳ |
-| BE-REP-008 | Specification search | Match phone/email | Seed nhieu ban ghi | Chi tra phone/email contains match | High | ⏳ |
-| BE-REP-009 | Specification search | Ket hop 6 dieu kien | Seed da dang | Ket qua dung giao nhau AND | High | ⏳ |
-| BE-REP-010 | Pagination + sort | Sort hireDate desc + page | Seed > 15 | Thu tu va page dung | High | ⏳ |
-
-## 7. Testcase Exception Handler (@RestControllerAdvice)
-| TC ID | Scenario | Trigger | Expected HTTP/Body | Expected message | Priority | Status |
-|---|---|---|---|---|---|---|
-| BE-EXC-001 | NotFoundException | getById invalid | 404 + ErrorResponse JSON | Thong bao not found than thien | High | ⏳ |
-| BE-EXC-002 | BusinessException | duplicate code | 409 + ErrorResponse JSON | Message trung ma nhan vien | High | ⏳ |
-| BE-EXC-003 | DataIntegrityViolationException | vi pham unique/not null | 400/500 + ErrorResponse JSON | Message loi du lieu ro rang | High | ⏳ |
-| BE-EXC-004 | Exception tong quat | runtime error bat ky | 500 + ErrorResponse JSON | Message loi he thong than thien | High | ⏳ |
-
-## 8. Testcase security va special input
-| TC ID | Scenario | Input | Expected | Priority | Status |
-|---|---|---|---|---|---|
-| BE-SEC-001 | XSS payload luu ten | <script>alert(1)</script> | BE luu/tra dung nguyen chuoi qua JSON (khong tu escape); FE chiu trach nhiem escape khi render, khong thuc thi script | High | ⏳ |
-| BE-SEC-002 | SQL-like payload search | ' OR 1=1 -- | Khong loi SQL injection, ket qua an toan | High | ⏳ |
-| BE-SEC-003 | Boundary max length | Chuoi > max field | Validation reject dung field | Medium | ⏳ |
-| BE-SEC-004 | Boundary date leap year | 2024-02-29 | Chap nhan ngay hop le | Medium | ⏳ |
-| BE-SEC-005 | Boundary date invalid | 2023-02-29 | Reject input | Medium | ⏳ |
-| BE-SEC-006 | Unicode tieng Viet | Nguyen Thi Binh | Luu/tra du lieu dung encoding qua JSON | Medium | ⏳ |
-| BE-SEC-007 | CORS tu origin khong duoc phep | Request tu origin la | HTTP bi chan boi CORS policy (khong co Access-Control-Allow-Origin) | Medium | ⏳ |
-
-## 9. Checklist dat muc tieu 100% coverage BE
-| Checklist ID | Noi dung | Dat/Khong |
-|---|---|---|
-| BE-COV-01 | Tat ca method controller co test branch thanh cong/that bai | ⏳ |
-| BE-COV-02 | Tat ca method service co test happy + exception + boundary | ⏳ |
-| BE-COV-03 | Tat ca query path repository co integration test | ⏳ |
-| BE-COV-04 | Tat ca global exception handler branch duoc trigger | ⏳ |
-| BE-COV-05 | Bao cao JaCoCo dat 100% line + branch package muc tieu | ⏳ |
-
-## 10. Automation mapping (Testcase ID -> Test class/method)
-Quy uoc ten method:
-- tc_<TESTCASE_ID_lowercase_with_underscore>
-
-| Testcase ID range | Test type | Test class du kien | Method pattern |
+| Field | Valid example | Invalid examples | Expected |
 |---|---|---|---|
-| BE-CTL-001..020 | REST API test | EmployeeRestControllerTest | tc_be_ctl_XXX |
-| BE-SVC-001..016 | Unit test | EmployeeServiceTest | tc_be_svc_XXX |
-| BE-REP-001..010 | Integration test | EmployeeRepositoryDataJpaTest | tc_be_rep_XXX |
-| BE-EXC-001..004 | REST API test | GlobalExceptionHandlerRestTest | tc_be_exc_XXX |
-| BE-SEC-001..007 | Unit+REST API mix | EmployeeSecurityValidationTest | tc_be_sec_XXX |
+| employeeCode | `E001`, `HR_001` | `e001`, `E 01`, `E@01`, 2 chars, 21 chars | 400 `EMP-400-001`; duplicate is 409 |
+| fullName | `Nguyen Van A` | blank, 1 char, >150 chars | 400 `EMP-400-001` |
+| gender | `MALE`, `FEMALE`, `OTHER` | `UNKNOWN`, empty optional | 400 for invalid enum |
+| dateOfBirth | `1995-05-10`, null | `2099-01-01`, `2023-02-29` | 400 for invalid/future date |
+| phone | `0901234567`, `+84901234567` | `abc123`, `0123`, invalid prefix | 400 `EMP-400-001` |
+| email | `a@example.com`, null | `abc@`, `a@`, >150 chars | 400 `EMP-400-001` |
 
-Mapping mau cu the:
-| Testcase ID | Test class | Method |
-|---|---|---|
-| BE-CTL-006 | EmployeeRestControllerTest | tc_be_ctl_006 |
-| BE-CTL-017 | EmployeeRestControllerTest | tc_be_ctl_017 |
-| BE-SVC-005 | EmployeeServiceTest | tc_be_svc_005 |
-| BE-SVC-015 | EmployeeServiceTest | tc_be_svc_015 |
-| BE-REP-009 | EmployeeRepositoryDataJpaTest | tc_be_rep_009 |
-| BE-EXC-003 | GlobalExceptionHandlerRestTest | tc_be_exc_003 |
-| BE-SEC-002 | EmployeeSecurityValidationTest | tc_be_sec_002 |
+## 3. Controller/API cases
+
+| ID | Method | Preconditions | Input/request | Steps | Validation | Expected output | Priority | Automation |
+|---|---|---|---|---|---|---|---|---|
+| BE-CTL-001 | GET list | DB has seed data | No filters, `page=0&size=10&sort=employeeCode,asc` | Call endpoint | page >=0, size 1-100, valid sort | 200; content <=10; metadata page/size/totalElements/totalPages/sort present | High | MockMvc |
+| BE-CTL-002 | GET list | E001 exists | `employeeCode=E001` | Call endpoint | case-insensitive contains | 200; every returned code contains E001 case-insensitively | High | MockMvc |
+| BE-CTL-003 | GET list | varied names exist | `fullName=nguyen` | Call endpoint | case-insensitive contains | 200; every result name contains Nguyen | High | MockMvc |
+| BE-CTL-004 | GET list | varied genders exist | `gender=MALE` | Call endpoint | exact enum | 200; every result gender is MALE | High | MockMvc |
+| BE-CTL-005 | GET list | matching DOB exists | `dateOfBirth=1990-01-01` | Call endpoint | ISO date exact | 200; every result has exact DOB | High | MockMvc |
+| BE-CTL-006 | GET list | phone/email data exists | `phone=090`, then `email=company.com` | Call each endpoint | contains matching | 200; only matching records returned | High | MockMvc |
+| BE-CTL-007 | GET list | varied data exists | All six filters together | Call endpoint | filters combine AND | 200; each item satisfies all active filters | High | MockMvc |
+| BE-CTL-008 | GET list | none | `page=-1`, `size=0`, `size=101`, invalid sort | Call each request | reject invalid query | 400 `EMP-400-001`, never 500 | High | MockMvc |
+| BE-CTL-009 | GET detail | ID exists | `/api/employees/{id}` | Call endpoint | numeric ID | 200; response contains exactly six public fields plus no removed Employee fields | High | MockMvc |
+| BE-CTL-010 | GET detail | ID missing | ID `999999` | Call endpoint | numeric ID | 404 `EMP-404-001`; standardized ErrorResponse | High | MockMvc |
+| BE-CTL-011 | POST create | unique test code | Valid six-field JSON | POST JSON | all field rules pass | 201; EmployeeResponse returned; Location may point to resource | High | MockMvc |
+| BE-CTL-012 | POST create | none | Missing employeeCode | POST JSON | required validation | 400 `EMP-400-001`; details.field=employeeCode | High | MockMvc |
+| BE-CTL-013 | POST create | none | Missing fullName | POST JSON | required validation | 400; details.field=fullName | High | MockMvc |
+| BE-CTL-014 | POST create | none | Invalid code/gender/date/phone/email | POST each invalid payload | field validation | 400; correct field details; no row inserted | High | MockMvc |
+| BE-CTL-015 | POST create | E001 exists | employeeCode E001 | POST JSON | unique constraint | 409 `EMP-409-001`; no new row | High | MockMvc |
+| BE-CTL-016 | PUT update | test employee exists | Valid changed six fields | PUT JSON | same validation as POST | 200; response reflects changes | High | MockMvc |
+| BE-CTL-017 | PUT update | employee exists | New code already used by another row | PUT JSON | uniqueness business rule | 409 `EMP-409-001`; original row unchanged | High | MockMvc |
+| BE-CTL-018 | PUT update | ID missing | Valid JSON, ID 999999 | PUT JSON | resource existence | 404 `EMP-404-001` | High | MockMvc |
+| BE-CTL-019 | DELETE | ID exists | `/api/employees/{id}` | DELETE | resource existence | 204, empty body; subsequent GET returns 404 | High | MockMvc |
+| BE-CTL-020 | DELETE | ID missing | ID 999999 | DELETE | resource existence | 404 `EMP-404-001` | High | MockMvc |
+| BE-CTL-021 | CSV export | data exists | Six filters and sort | GET export | same filter validation as list | 200; `text/csv; charset=UTF-8`; Content-Disposition filename; BOM | High | MockMvc |
+| BE-CTL-022 | CSV export | no match | `employeeCode=ZZZ_NO_MATCH` | GET export | valid filter | 200; header only; no data row | Medium | MockMvc |
+| BE-CTL-023 | CORS | local allowed origin | OPTIONS preflight | Send origin/method headers | origin policy | 200/204 and allowed origin header | Medium | MockMvc |
+
+## 4. Service cases
+
+| ID | Method | Input | Steps | Expected |
+|---|---|---|---|---|
+| BE-SVC-001 | search | six filters empty | Call service | repository receives empty specification; page maps correctly |
+| BE-SVC-002 | search | each individual filter | Call service per field | correct predicate: contains or exact |
+| BE-SVC-003 | search | six filters populated | Call service | predicates combine with AND |
+| BE-SVC-004 | create | valid request | Call service | trims strings, maps DTO, saves once |
+| BE-SVC-005 | create | duplicate code | Mock existsByEmployeeCode=true | BusinessException mapped to 409 |
+| BE-SVC-006 | update | valid request | Call service | existing row updated and saved |
+| BE-SVC-007 | update | duplicate code on another ID | Mock repository match | BusinessException; row not saved |
+| BE-SVC-008 | get/delete | missing ID | Mock empty Optional | NotFoundException |
+| BE-SVC-009 | export | matching records | Call export | BOM, six-field header, escaped CSV values |
+| BE-SVC-010 | export | no records | Call export | BOM plus header only |
+
+## 5. Repository cases
+
+| ID | Query concern | Data setup | Expected |
+|---|---|---|---|
+| BE-REP-001 | employeeCode contains | E001, E010 | only codes containing input |
+| BE-REP-002 | fullName contains case-insensitive | mixed-case names | case-independent matches |
+| BE-REP-003 | gender exact | MALE/FEMALE/OTHER | only requested gender |
+| BE-REP-004 | DOB exact | multiple dates | only exact date |
+| BE-REP-005 | phone/email contains | multiple values | matching values only |
+| BE-REP-006 | AND combination | varied records | intersection only |
+| BE-REP-007 | pagination/sort | >20 rows | stable page and order |
+
+## 6. Error handler cases
+
+| ID | Trigger | Expected HTTP | Expected body |
+|---|---|---:|---|
+| BE-ERR-001 | Bean validation exception | 400 | EMP-400-001 with field details |
+| BE-ERR-002 | Duplicate code BusinessException | 409 | EMP-409-001 |
+| BE-ERR-003 | NotFoundException | 404 | EMP-404-001 |
+| BE-ERR-004 | Invalid query/path type | 400 | EMP-400-001 |
+| BE-ERR-005 | Unexpected RuntimeException | 500 | EMP-500-001, no stack trace |
+
+## 7. Definition of done
+
+- All High cases pass.
+- Every public endpoint has success and error coverage.
+- Response contains no removed Employee fields.
+- Maven test passes with H2 in-memory.

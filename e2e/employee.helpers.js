@@ -9,7 +9,6 @@ function uniqueEmployee(overrides = {}) {
     dateOfBirth: '1990-01-10',
     phone: `091${suffix.slice(-7)}`,
     email: `playwright.${suffix}@example.com`,
-    status: 'ACTIVE',
     ...overrides,
   };
 }

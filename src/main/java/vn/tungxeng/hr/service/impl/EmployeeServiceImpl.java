@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import vn.tungxeng.hr.dto.EmployeeRequest;
 import vn.tungxeng.hr.dto.EmployeeResponse;
 import vn.tungxeng.hr.entity.Employee;
-import vn.tungxeng.hr.entity.EmployeeStatus;
 import vn.tungxeng.hr.exception.BusinessException;
 import vn.tungxeng.hr.exception.NotFoundException;
 import vn.tungxeng.hr.repository.EmployeeRepository;
@@ -51,9 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new BusinessException("Ma nhan vien da ton tai: " + code);
         }
         Employee employee = new Employee(code, normalize(request.fullName()), request.gender(), request.dateOfBirth(),
-                request.phone(), normalizeNullable(request.email()), normalizeNullable(request.address()),
-                normalizeNullable(request.department()), normalizeNullable(request.position()), request.hireDate(),
-                EmployeeStatus.valueOf(request.status().name()), request.baseSalary(), normalizeNullable(request.note()));
+            request.phone(), normalizeNullable(request.email()));
         return toResponse(repository.save(employee));
     }
 
@@ -71,13 +68,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDateOfBirth(request.dateOfBirth());
         employee.setPhone(request.phone());
         employee.setEmail(normalizeNullable(request.email()));
-        employee.setAddress(normalizeNullable(request.address()));
-        employee.setDepartment(normalizeNullable(request.department()));
-        employee.setPosition(normalizeNullable(request.position()));
-        employee.setHireDate(request.hireDate());
-        employee.setStatus(EmployeeStatus.valueOf(request.status().name()));
-        employee.setBaseSalary(request.baseSalary());
-        employee.setNote(normalizeNullable(request.note()));
         return toResponse(repository.save(employee));
     }
 
@@ -91,7 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public byte[] exportCsv(String employeeCode, String fullName, String gender,
                             LocalDate dateOfBirth, String phone, String email, Pageable pageable) {
         List<Employee> employees = repository.findAll(buildSpecification(employeeCode, fullName, gender, dateOfBirth, phone, email), pageable).getContent();
-        StringBuilder csv = new StringBuilder("\uFEFFemployeeCode,fullName,gender,dateOfBirth,phone,email,address,department,position,hireDate,status,baseSalary,note\n");
+        StringBuilder csv = new StringBuilder("\uFEFFemployeeCode,fullName,gender,dateOfBirth,phone,email\n");
         for (Employee employee : employees) {
             csv.append(csvRow(employee)).append('\n');
         }
@@ -125,14 +115,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeResponse toResponse(Employee e) {
         return new EmployeeResponse(e.getId(), e.getEmployeeCode(), e.getFullName(), e.getGender(), e.getDateOfBirth(),
-                e.getPhone(), e.getEmail(), e.getAddress(), e.getDepartment(), e.getPosition(), e.getHireDate(),
-                e.getStatus().name(), e.getBaseSalary(), e.getNote(), e.getCreatedAt(), e.getUpdatedAt());
+            e.getPhone(), e.getEmail());
     }
 
     private String csvRow(Employee e) {
         return String.join(",", csv(e.getEmployeeCode()), csv(e.getFullName()), csv(e.getGender()), csv(date(e.getDateOfBirth())),
-                csv(e.getPhone()), csv(e.getEmail()), csv(e.getAddress()), csv(e.getDepartment()), csv(e.getPosition()),
-                csv(date(e.getHireDate())), csv(e.getStatus().name()), csv(e.getBaseSalary()), csv(e.getNote()));
+            csv(e.getPhone()), csv(e.getEmail()));
     }
 
     private String csv(Object value) {

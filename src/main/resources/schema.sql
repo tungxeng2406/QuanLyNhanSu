@@ -5,23 +5,19 @@ CREATE TABLE IF NOT EXISTS employees (
     gender VARCHAR(20),
     date_of_birth DATE,
     phone VARCHAR(20),
-    email VARCHAR(150),
-    address VARCHAR(255),
-    department VARCHAR(100),
-    position VARCHAR(100),
-    hire_date DATE,
-    status VARCHAR(20) NOT NULL,
-    base_salary DECIMAL(18, 2),
-    note VARCHAR(500),
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL,
-    CONSTRAINT chk_employees_status CHECK (status IN ('ACTIVE', 'INACTIVE', 'RESIGNED')),
-    CONSTRAINT chk_employees_salary CHECK (base_salary IS NULL OR base_salary >= 0)
+    email VARCHAR(150)
 );
 
 CREATE INDEX IF NOT EXISTS idx_employees_full_name ON employees(full_name);
-CREATE INDEX IF NOT EXISTS idx_employees_department ON employees(department);
-CREATE INDEX IF NOT EXISTS idx_employees_status ON employees(status);
-CREATE INDEX IF NOT EXISTS idx_employees_hire_date ON employees(hire_date);
 CREATE INDEX IF NOT EXISTS idx_employees_email ON employees(email);
 CREATE INDEX IF NOT EXISTS idx_employees_phone ON employees(phone);
+
+ALTER TABLE employees DROP COLUMN IF EXISTS address;
+ALTER TABLE employees DROP COLUMN IF EXISTS department;
+ALTER TABLE employees DROP COLUMN IF EXISTS position;
+ALTER TABLE employees DROP COLUMN IF EXISTS hire_date;
+ALTER TABLE employees DROP COLUMN IF EXISTS status;
+ALTER TABLE employees DROP COLUMN IF EXISTS base_salary;
+ALTER TABLE employees DROP COLUMN IF EXISTS note;
+ALTER TABLE employees DROP COLUMN IF EXISTS created_at;
+ALTER TABLE employees DROP COLUMN IF EXISTS updated_at;

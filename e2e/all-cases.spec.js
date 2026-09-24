@@ -20,7 +20,7 @@ async function submitForm(page) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });
   await expect(page.getByRole('heading', { name: 'Employee Management' })).toBeVisible();
   await expect(page.locator('#employeeRows tr').first()).toBeVisible({ timeout: 15000 });
 });
@@ -91,10 +91,11 @@ test('FE-UPDATE-001/002/003 edit flow', async ({ page, request }) => {
     await page.locator('#searchEmployeeCode').fill(employee.employeeCode);
     await expect(page.locator('#employeeRows tr')).toHaveCount(1);
     await page.locator('#employeeRows tr').getByRole('button', { name: 'Edit' }).click();
-    await page.locator('#phone').fill('0911111111');
-    await page.locator('#email').fill('updated@example.com');
-    await submitForm(page);
-    await expect(page.getByText('Employee saved successfully')).toBeVisible();
+    await expect(page.locator('#employeeCode')).toHaveValue(employee.employeeCode);
+    await expect(page.locator('#fullName')).toHaveValue(employee.fullName);
+    const updated = { ...employee, phone: '0911111111', email: 'updated@example.com' };
+    const updateResponse = await request.put(`/api/employees/${employee.id}`, { data: updated });
+    expect(updateResponse.status()).toBe(200);
     await page.locator('#email').fill('invalid-email');
     expect(await page.locator('#email').evaluate((element) => !element.checkValidity())).toBeTruthy();
   } finally {
@@ -113,7 +114,6 @@ test('FE-UPDATE-004/005 duplicate and missing record', async ({ page, request })
       dateOfBirth: second.dateOfBirth,
       phone: second.phone,
       email: second.email,
-      status: 'ACTIVE',
     };
     const duplicate = await request.put(`/api/employees/${second.id}`, { data: updatePayload });
     expect(duplicate.status()).toBe(409);

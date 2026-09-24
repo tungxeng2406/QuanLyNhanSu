@@ -3,15 +3,15 @@ const { uniqueEmployee, createEmployee, deleteEmployee, clearSearch } = require(
 
 test.describe('Employee management UI', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });
     await expect(page.getByRole('heading', { name: 'Employee Management' })).toBeVisible();
     await expect(page.locator('#employeeRows tr').first()).toBeVisible({ timeout: 15000 });
   });
 
   test('renders the seeded employee list', async ({ page }) => {
     await expect(page.locator('#employeeRows tr')).toHaveCount(10);
-    await expect(page.getByRole('columnheader', { name: 'Employee Code' })).toBeVisible();
-    await expect(page.getByText('Page 1 / 5')).toBeVisible();
+    await expect(page.getByRole('button', { name: /employeeCode/i })).toBeVisible();
+    await expect(page.getByText(/Page 1 \/ \d+/)).toBeVisible();
   });
 
   test('auto-searches by employee code and clears safely', async ({ page }) => {
@@ -92,11 +92,22 @@ function searchParam(selector) {
 }
 
 async function searchAndWait(page, selector, value) {
+  const responsePromise = page.waitForResponse((response) => {
+    const url = new URL(response.url());
+    return url.pathname === '/api/employees' && url.searchParams.get(searchParam(selector)) === value;
+  });
   const field = page.locator(selector);
   if (await field.evaluate((element) => element.tagName === 'SELECT')) {
     await field.selectOption(value);
   } else {
     await field.fill(value);
   }
-  await expect(page.locator('#employeeRows tr').first()).toBeVisible({ timeout: 10000 });
+  const response = await responsePromise;
+  expect(response.status()).toBe(200);
+  const data = await response.json();
+  expect(data.content.length).toBeGreaterThan(0);
+  for (const employee of data.content) {
+    expect(employee[searchParam(selector)].toLowerCase()).toContain(value.toLowerCase());
+  }
+  await expect(page.locator('#employeeRows tr').first()).toContainText(data.content[0].employeeCode);
 }

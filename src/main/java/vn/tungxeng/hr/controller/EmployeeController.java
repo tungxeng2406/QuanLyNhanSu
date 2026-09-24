@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import vn.tungxeng.hr.dto.EmployeeListResponse;
 import vn.tungxeng.hr.dto.EmployeeRequest;
 import vn.tungxeng.hr.dto.EmployeeResponse;
-import vn.tungxeng.hr.entity.EmployeeStatus;
 import vn.tungxeng.hr.service.EmployeeService;
 
 import java.time.LocalDate;
@@ -25,7 +24,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
-    private static final Set<String> SORT_FIELDS = Set.of("employeeCode", "fullName", "department", "hireDate", "status");
+    private static final Set<String> SORT_FIELDS = Set.of("employeeCode", "fullName", "gender", "dateOfBirth", "phone", "email");
     private static final DateTimeFormatter FILE_TIME = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
     private final EmployeeService service;
 
@@ -44,6 +43,7 @@ public class EmployeeController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "employeeCode,asc") String sort) {
+        if (size > 100) throw new IllegalArgumentException("Size khong duoc vuot qua 100");
         PageRequest pageable = pageRequest(page, size, sort);
         Page<EmployeeResponse> result = service.search(employeeCode, fullName, gender, dateOfBirth, phone, email, pageable);
         return new EmployeeListResponse(result.getContent(), result.getNumber(), result.getSize(),

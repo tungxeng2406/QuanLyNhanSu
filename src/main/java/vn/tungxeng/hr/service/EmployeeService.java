@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.tungxeng.hr.dto.EmployeeRequest;
 import vn.tungxeng.hr.dto.EmployeeResponse;
-import vn.tungxeng.hr.entity.EmployeeStatus;
 
 import java.time.LocalDate;
 

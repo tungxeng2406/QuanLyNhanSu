@@ -25,7 +25,7 @@ Ung dung quan ly nhan su cho Admin/HR noi bo, gom:
 3. `dateOfBirth` co duoc lon hon ngay hien tai khong?
 4. Phone co bat buoc format Viet Nam khong?
 5. Email co bat buoc unique khong?
-6. Co can luu cac field backend mo rong nhu `department`, `status`, `salary` khong, hay chi ton tai dung 6 field?
+6. Co can luu cac field backend mo rong nhu `department`, `position`, `hireDate`, `salary` khong, hay chi ton tai dung 6 field?
 
 ### Search
 
