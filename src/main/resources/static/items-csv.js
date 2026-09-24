@@ -1,5 +1,5 @@
 (() => {
-  const headers = ['No', 'Tên mặt hàng', 'Số lượng', 'Đơn giá', 'VAT (Mặt hàng)'];
+  const headers = ['No', 'Tên mặt hàng', 'Số lượng', 'Đơn giá', 'Thuế VAT (%)'];
   const byId = id => document.getElementById(id);
   const fileInput = byId('itemsCsvFile');
   const dialog = byId('itemsDialog');
@@ -57,6 +57,8 @@
       const actualHeaders = rows.shift() || [];
       const normalize = value => value.trim().normalize('NFC').toLocaleLowerCase('vi');
       const indices = headers.map(header => actualHeaders.findIndex(value => normalize(value) === normalize(header)));
+      // Accept existing CSV templates and the short tax-rate heading.
+      if (indices[4] === -1) indices[4] = actualHeaders.findIndex(value => ['thuế vat', 'vat (mặt hàng)'].includes(normalize(value)));
       if (indices.includes(-1) || new Set(actualHeaders.map(normalize)).size !== actualHeaders.length) {
         throw new Error(`CSV cần các cột: ${headers.join(', ')}.`);
       }
@@ -69,12 +71,16 @@
         if (!no || !name) throw new Error(`Dòng ${line}: No và Tên mặt hàng không được để trống.`);
         const quantity = number(qty, 'Số lượng', line);
         const unitPrice = number(price, 'Đơn giá', line);
-        const vatRate = number(rate, 'VAT (Mặt hàng)', line, true);
+        const vatRate = number(rate, 'Thuế VAT (%)', line, true);
         const total = quantity * unitPrice;
         const vat = total * vatRate / 100;
         if (!Number.isFinite(total) || total > Number.MAX_SAFE_INTEGER || !Number.isFinite(vat)) throw new Error(`Dòng ${line}: giá trị tính toán quá lớn.`);
         const round = value => Math.round((value + Number.EPSILON) * 100) / 100;
-        return [no, name, quantity, unitPrice, vatRate, round(total), round(vat)];
+        const beforeVat = round(total);
+        const vatAmount = round(vat);
+        const afterVat = round(beforeVat + vatAmount);
+        if (afterVat > Number.MAX_SAFE_INTEGER) throw new Error(`Dòng ${line}: giá trị tính toán quá lớn.`);
+        return [no, name, quantity, unitPrice, vatRate, beforeVat, vatAmount, afterVat];
       });
       items = parsed;
       const fragment = document.createDocumentFragment();
@@ -89,7 +95,9 @@
         fragment.append(tr);
       }
       byId('itemsRows').replaceChildren(fragment);
-      byId('itemsSummary').textContent = `${file.name} · ${items.length} mặt hàng · Tổng và VAT làm tròn 2 chữ số thập phân.`;
+      const totalAfterVat = items.reduce((sum, item) => sum + Math.round(item[7] * 100), 0) / 100;
+      byId('itemsTotal').textContent = format.format(totalAfterVat);
+      byId('itemsSummary').textContent = `${file.name} · ${items.length} mặt hàng · Trước VAT = Số lượng × Đơn giá; Thuế VAT = Trước VAT × Thuế VAT (%) / 100; Sau VAT = Trước VAT + Thuế VAT. Số tiền làm tròn 2 chữ số thập phân.`;
       byId('alert').hidden = true;
       dialog.showModal();
     } catch (error) {
@@ -105,7 +113,7 @@
       if (/^[\s]*[=+@-]/.test(text)) text = "'" + text;
       return '"' + text.replace(/"/g, '""') + '"';
     };
-    const csv = [headers.concat(['Tổng', 'VAT']), ...items].map(row => row.map(escape).join(',')).join('\r\n');
+    const csv = [headers.concat(['Trước VAT', 'Thuế VAT', 'Sau VAT']), ...items].map(row => row.map(escape).join(',')).join('\r\n');
     const url = URL.createObjectURL(new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8;' }));
     const link = document.createElement('a');
     link.href = url;

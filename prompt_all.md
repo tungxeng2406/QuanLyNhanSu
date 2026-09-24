@@ -186,3 +186,13 @@ Khi user chọn file xong, thì show modal với các cột đó, thêm 2 cột:
 
 Modal cũng có button Export CSV.
 
+
+
+---------------------------------------------------------------------------------
+16)
+Thay đổi 4 cột:
+VAT (Mặt hàng) -> Thuế VAT
+Trước VAT -> Số lượng * Đơn giá
+Thuế VAT = Trước VAT * Thuế VAT
+Sau VAT = Trước VAT + Thuế VAT
+

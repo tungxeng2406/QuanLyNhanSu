@@ -16,12 +16,13 @@ does not create duplicates. The web UI is available at
 ### Import item CSV
 
 Click **Import file** and select a UTF-8, comma-separated CSV with headers
-`No,Tên mặt hàng,Số lượng,Đơn giá,VAT (Mặt hàng)`.
+`No,Tên mặt hàng,Số lượng,Đơn giá,Thuế VAT (%)` (also accepts `Thuế VAT` or the legacy `VAT (Mặt hàng)` rate header).
 See [sample CSV](docs/mat-hang-mau.csv). Numbers use a decimal point without
 thousands separators; VAT accepts `8` or `8%` for 8 percent (0–100).
-The modal calculates Tổng = Số lượng × Đơn giá and VAT = Tổng × rate / 100,
+The modal calculates Trước VAT = Số lượng × Đơn giá, Thuế VAT = Trước VAT × rate / 100,
+and Sau VAT = Trước VAT + Thuế VAT,
 rounding calculated amounts to two decimal places. **Export CSV** downloads
-all seven columns with a UTF-8 BOM for Excel. Imported items stay in the browser
+all eight columns with a UTF-8 BOM for Excel. Imported items stay in the browser
 and are not saved to the employee database. Limit: 5 MB / 10,000 rows.
 
 ### Backend tests

@@ -17,10 +17,10 @@
   <dialog id="itemsDialog" aria-labelledby="itemsTitle">
     <div class="panel-heading"><div><p class="eyebrow">IMPORT CSV</p><h2 id="itemsTitle">Danh sách mặt hàng</h2></div><button id="closeItemsButton" type="button" class="button secondary">Đóng</button></div>
     <p id="itemsSummary"></p>
-    <div class="table-wrap"><table><thead><tr><th>No</th><th>Tên mặt hàng</th><th>Số lượng</th><th>Đơn giá</th><th>VAT (Mặt hàng)</th><th>Tổng</th><th>VAT</th></tr></thead><tbody id="itemsRows"></tbody></table></div>
+    <div class="table-wrap"><table><thead><tr><th>No</th><th>Tên mặt hàng</th><th>Số lượng</th><th>Đơn giá</th><th>Thuế VAT (%)</th><th>Trước VAT</th><th>Thuế VAT</th><th>Sau VAT</th></tr></thead><tbody id="itemsRows"></tbody><tfoot><tr><th scope="row" colspan="7">Total</th><td id="itemsTotal" style="text-align:right;font-weight:700" aria-live="polite"></td></tr></tfoot></table></div>
     <div class="items-footer"><button id="exportItemsButton" type="button" class="button primary">Export CSV</button></div>
   </dialog>
   <script src="/app.js?v=6"></script>
-  <script src="/items-csv.js?v=1"></script>
+  <script src="/items-csv.js?v=3"></script>
 </body>
 </html>
