@@ -217,8 +217,7 @@ Mô tả thêm về chức năng ở đây
 
 
 ---------------------------------------------------------------------------------
-19)
-Hãy giúp tôi run test case "tests/unit/testcase_FE.md",
+19) Hãy giúp tôi run test case "tests/unit/testcase_FE.md",
 Tạo kết quả vào file "tests/unit_result/testcasse_FE_YYYYMMDD_hhmmss.md"
 
 
@@ -234,3 +233,10 @@ chỉ trả lời, ko edit gì
 ---------------------------------------------------------------------------------
 21) lab_4_1_test_harness_analyze.md
 hãy tạo file lab_4_1_test_harness_analyze.md, và add tất cả nội dung vào
+
+
+
+---------------------------------------------------------------------------------
+22) lab_4_1_test_harness_analyze.md
+tôi mới tạo branch main_thanhtung,
+hãy mô tả các bước cần thực hiện giúp tôi, và liệt kê những chỗ chưa rõ cần hỏi lại
