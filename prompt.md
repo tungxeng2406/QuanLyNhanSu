@@ -248,3 +248,35 @@ hiện tại source code java và javascript chưa apply coding rule (javadoc, c
 giải thích lý do tại sao? (trong requirement ko mô tả hay sao?)
 docs/java-coding-rules.md
 docs/javascript-coding-rules.md
+
+
+
+---------------------------------------------------------------------------------
+24)
+tôi muốn check coding rule source code (java/js) dựa trên file coding-rules.
+nếu có lỗi thì sẽ tạo issue và push lên git, hãy hướng dẫn cách  làm giúp tôi
+
+
+---------------------------------------------------------------------------------
+25)
+Hãy giúp tôi check coding rule của source code, và tạo list Issue report giúp tôi
+-> coding-rule-issue-report_20260925_085503.md
+
+
+
+---------------------------------------------------------------------------------
+26)
+bây giờ tôi muốn update những issue lên github, tôi phải làm sao
+
+
+
+
+---------------------------------------------------------------------------------
+27)
+Hãy đưa 16 issue trong báo cáo lên GitHub của repository này, kiểm tra trùng trước và cập nhật link vào báo cáo.
+
+
+
+---------------------------------------------------------------------------------
+28) 
+hãy tạo file /docs_requirement/create_issue_in_github.md, và hướng dẫn chi tiết step by step các bước giúp tôi

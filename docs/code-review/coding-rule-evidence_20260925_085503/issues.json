@@ -1,0 +1,1408 @@
+[
+  {
+    "id": "CR-JAVA-001",
+    "title": "[Java] Bổ sung Javadoc cho type và public contract",
+    "priority": "P2",
+    "language": "java",
+    "rules": [
+      "MissingJavadocType",
+      "MissingJavadocMethod"
+    ],
+    "section": "Documentation Comments",
+    "description": "19 cảnh báo type và 20 cảnh báo method/constructor thiếu Javadoc. Interface EmployeeService cũng chưa mô tả hợp đồng để override kế thừa.",
+    "fix": "Mô tả trách nhiệm, tham số, kết quả và exception; bổ sung contract interface trước, tránh comment lặp lại code.",
+    "findings": [
+      {
+        "file": "src/main/java/vn/tungxeng/hr/config/CorsConfig.java",
+        "line": 8,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 24,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 31,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 35,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 53,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 58,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 63,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 68,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 74,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeListResponse.java",
+        "line": 5,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeRequest.java",
+        "line": 6,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeResponse.java",
+        "line": 6,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/dto/ErrorResponse.java",
+        "line": 6,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/dto/ErrorResponse.java",
+        "line": 14,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+        "line": 6,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+        "line": 34,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/exception/BusinessException.java",
+        "line": 3,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/exception/BusinessException.java",
+        "line": 4,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/exception/GlobalExceptionHandler.java",
+        "line": 18,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/exception/NotFoundException.java",
+        "line": 3,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/exception/NotFoundException.java",
+        "line": 4,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/HrApplication.java",
+        "line": 6,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/HrApplication.java",
+        "line": 8,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+        "line": 9,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+        "line": 10,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+        "line": 11,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 10,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 11,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 13,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 14,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 15,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 16,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 17,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 23,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 29,
+        "rule": "MissingJavadocMethod",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 14,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeApiIntegrationTest.java",
+        "line": 15,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "line": 21,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/HrApplicationSmokeTest.java",
+        "line": 11,
+        "rule": "MissingJavadocType",
+        "message": "Missing a Javadoc comment."
+      }
+    ],
+    "manualEvidence": [
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "line": 10,
+        "message": "public interface EmployeeService {"
+      }
+    ]
+  },
+  {
+    "id": "CR-JAVA-002",
+    "title": "[Java] Bổ sung braces cho control statements",
+    "priority": "P3",
+    "language": "java",
+    "rules": [
+      "NeedBraces"
+    ],
+    "section": "Compound Statements",
+    "description": "Có if một dòng không dùng braces trong controller/service.",
+    "fix": "Bổ sung braces, giữ logic và chạy test backend.",
+    "findings": [
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 46,
+        "rule": "NeedBraces",
+        "message": "'if' construct must use '{}'s."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "line": 93,
+        "rule": "NeedBraces",
+        "message": "'if' construct must use '{}'s."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 99,
+        "rule": "NeedBraces",
+        "message": "'if' construct must use '{}'s."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 100,
+        "rule": "NeedBraces",
+        "message": "'if' construct must use '{}'s."
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 127,
+        "rule": "NeedBraces",
+        "message": "'if' construct must use '{}'s."
+      }
+    ],
+    "manualEvidence": []
+  },
+  {
+    "id": "CR-JAVA-003",
+    "title": "[Java] Tách nhiều statement trên cùng dòng",
+    "priority": "P3",
+    "language": "java",
+    "rules": [
+      "OneStatementPerLine"
+    ],
+    "section": "Simple Statements",
+    "description": "DatabaseIntegrationTest gộp thao tác DB và assertion trên cùng dòng.",
+    "fix": "Tách từng statement, giữ thứ tự transaction và assertion.",
+    "findings": [
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 26,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 32,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 33,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 37,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 52,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 56,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 58,
+        "rule": "OneStatementPerLine",
+        "message": "Only one statement per line allowed."
+      }
+    ],
+    "manualEvidence": []
+  },
+  {
+    "id": "CR-JAVA-004",
+    "title": "[Java] Đổi tên test method sang camelCase",
+    "priority": "P3",
+    "language": "java",
+    "rules": [
+      "MethodName"
+    ],
+    "section": "Methods / General Rules",
+    "description": "9 method dùng chữ hoa đầu tên và underscore BE_SVC_/DB_, trái quy tắc đặt tên method.",
+    "fix": "Đổi sang camelCase, giữ mã testcase trong @DisplayName hoặc Javadoc.",
+    "findings": [
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 31,
+        "rule": "MethodName",
+        "message": "Name 'DB_SEED_001_002_fiftyRowsAndIdempotency' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 35,
+        "rule": "MethodName",
+        "message": "Name 'DB_SEED_003_businessRowPreventsDemoSeed' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 39,
+        "rule": "MethodName",
+        "message": "Name 'DB_SCH_004_005_uniqueAndRequiredFields' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "line": 49,
+        "rule": "MethodName",
+        "message": "Name 'DB_TXN_001_002_003_004_commitRollbackDeleteAndConflict' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "line": 30,
+        "rule": "MethodName",
+        "message": "Name 'BE_SVC_004_createTrimsAndSavesOnce' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "line": 39,
+        "rule": "MethodName",
+        "message": "Name 'BE_SVC_005_duplicateDoesNotSave' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "line": 46,
+        "rule": "MethodName",
+        "message": "Name 'BE_SVC_008_missingGetAndDelete' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "line": 52,
+        "rule": "MethodName",
+        "message": "Name 'BE_SVC_009_csvEscapesUnicodeQuotesAndNulls' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      },
+      {
+        "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "line": 59,
+        "rule": "MethodName",
+        "message": "Name 'BE_SVC_010_emptyCsv' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+      }
+    ],
+    "manualEvidence": []
+  },
+  {
+    "id": "CR-JAVA-005",
+    "title": "[Java] Chuẩn hóa bố cục method",
+    "priority": "P3",
+    "language": "java",
+    "rules": [],
+    "section": "Class and Interface Declarations",
+    "description": "Getter/setter và helper đặt dấu đóng braces cùng dòng; nhiều method liền nhau không có dòng trắng.",
+    "fix": "Đưa dấu đóng braces xuống dòng và tách method bằng dòng trắng.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+        "line": 44,
+        "message": "public Long getId() { return id; }"
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 132,
+        "message": "private String date(LocalDate value) { return value == null ? null : value.format(DATE_FORMAT); }"
+      }
+    ]
+  },
+  {
+    "id": "CR-JAVA-006",
+    "title": "[Java] Đặt hậu tố List cho biến Collection",
+    "priority": "P3",
+    "language": "java",
+    "rules": [],
+    "section": "Variables",
+    "description": "Các biến nội bộ employees, predicates, details chưa có hậu tố List như convention yêu cầu.",
+    "fix": "Đổi biến nội bộ thành employeeList/predicateList/fieldErrorList; không đổi trường JSON công khai chỉ để sửa naming.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 83,
+        "message": "List<Employee> employees = repository.findAll(buildSpecification(employeeCode, fullName, gender, dateOfBirth, phone, email), pageable).getContent();"
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "line": 94,
+        "message": "List<Predicate> predicates = new ArrayList<>();"
+      },
+      {
+        "file": "src/main/java/vn/tungxeng/hr/exception/GlobalExceptionHandler.java",
+        "line": 27,
+        "message": "List<ErrorResponse.FieldErrorDetail> details = ex.getBindingResult().getFieldErrors().stream()"
+      }
+    ]
+  },
+  {
+    "id": "CR-JS-001",
+    "title": "[JavaScript] Bổ sung JSDoc cho helper export và hàm phức tạp",
+    "priority": "P2",
+    "language": "javascript",
+    "rules": [
+      "jsdoc/require-jsdoc"
+    ],
+    "section": "JSDoc Comments",
+    "description": "4 helper export thiếu JSDoc. Review thủ công xác nhận parseCsv có state machine/throw Error nhưng chỉ có comment ngắn; load/save có luồng async phức tạp chưa có JSDoc. publicOnly chưa phát hiện nhóm hàm không export.",
+    "fix": "Bổ sung @param, @returns/Promise, @throws khi áp dụng; review cả hàm trong closure.",
+    "findings": [
+      {
+        "file": "e2e/employee.helpers.js",
+        "line": 3,
+        "rule": "jsdoc/require-jsdoc",
+        "message": "Missing JSDoc comment."
+      },
+      {
+        "file": "e2e/employee.helpers.js",
+        "line": 16,
+        "rule": "jsdoc/require-jsdoc",
+        "message": "Missing JSDoc comment."
+      },
+      {
+        "file": "e2e/employee.helpers.js",
+        "line": 22,
+        "rule": "jsdoc/require-jsdoc",
+        "message": "Missing JSDoc comment."
+      },
+      {
+        "file": "e2e/employee.helpers.js",
+        "line": 28,
+        "rule": "jsdoc/require-jsdoc",
+        "message": "Missing JSDoc comment."
+      }
+    ],
+    "manualEvidence": [
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 9,
+        "message": "function parseCsv(text) {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 56,
+        "message": "async function load() {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 162,
+        "message": "async function save(event) {"
+      }
+    ]
+  },
+  {
+    "id": "CR-JS-002",
+    "title": "[JavaScript] Chuẩn hóa braces và block",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [
+      "curly",
+      "brace-style"
+    ],
+    "section": "Braces / Compound Statements",
+    "description": "Có if thiếu braces và block gộp cùng dòng. Một dòng có thể sinh nhiều cảnh báo.",
+    "fix": "Thêm braces, bố cục 1TBS và chạy test liên quan.",
+    "findings": [
+      {
+        "file": "e2e/employee.helpers.js",
+        "line": 23,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 14,
+        "rule": "curly",
+        "message": "Expected { after 'for-of'."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 33,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 49,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 62,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 63,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 68,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 115,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 115,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 123,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 123,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 136,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 136,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 139,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 139,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 156,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 164,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 172,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 186,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 188,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 188,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 196,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 196,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 200,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 200,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 204,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 204,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 206,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 206,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 207,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 207,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 211,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 211,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 211,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 212,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 212,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 212,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 214,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 214,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 215,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 215,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 16,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 16,
+        "rule": "brace-style",
+        "message": "Closing curly brace does not appear on the same line as the subsequent block."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 16,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 17,
+        "rule": "brace-style",
+        "message": "Statement inside of curly braces should be on next line."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 17,
+        "rule": "brace-style",
+        "message": "Closing curly brace does not appear on the same line as the subsequent block."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 17,
+        "rule": "brace-style",
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 18,
+        "rule": "curly",
+        "message": "Expected { after 'else'."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 22,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 24,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 26,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 28,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 32,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 34,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 40,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 52,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 54,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 55,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 61,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 65,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 66,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 69,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 71,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 77,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 82,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 113,
+        "rule": "curly",
+        "message": "Expected { after 'if' condition."
+      }
+    ],
+    "manualEvidence": []
+  },
+  {
+    "id": "CR-JS-003",
+    "title": "[JavaScript] Chia dòng dài quá 100 ký tự",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [
+      "max-len"
+    ],
+    "section": "Line Length / Wrapping Lines",
+    "description": "42 cảnh báo dài dòng, bao gồm 1 cảnh báo trong script audit chưa commit. Giới hạn tài liệu là 80–100; config chọn 100 và bỏ qua URL.",
+    "fix": "Tách chuỗi/object/callback, giữ nguyên nội dung và hành vi.",
+    "findings": [
+      {
+        "file": "scripts/check-coding-rules.cjs",
+        "line": 76,
+        "rule": "max-len",
+        "message": "This line has a length of 136. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/all-cases.spec.js",
+        "line": 2,
+        "rule": "max-len",
+        "message": "This line has a length of 102. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/all-cases.spec.js",
+        "line": 75,
+        "rule": "max-len",
+        "message": "This line has a length of 123. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/all-cases.spec.js",
+        "line": 100,
+        "rule": "max-len",
+        "message": "This line has a length of 102. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/employee.spec.js",
+        "line": 2,
+        "rule": "max-len",
+        "message": "This line has a length of 102. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/employee.spec.js",
+        "line": 71,
+        "rule": "max-len",
+        "message": "This line has a length of 112. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/employee.spec.js",
+        "line": 97,
+        "rule": "max-len",
+        "message": "This line has a length of 102. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/employee.spec.js",
+        "line": 112,
+        "rule": "max-len",
+        "message": "This line has a length of 101. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/items-csv.spec.js",
+        "line": 4,
+        "rule": "max-len",
+        "message": "This line has a length of 147. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/items-csv.spec.js",
+        "line": 9,
+        "rule": "max-len",
+        "message": "This line has a length of 103. Maximum allowed is 100."
+      },
+      {
+        "file": "e2e/items-csv.spec.js",
+        "line": 13,
+        "rule": "max-len",
+        "message": "This line has a length of 161. Maximum allowed is 100."
+      },
+      {
+        "file": "playwright.config.js",
+        "line": 11,
+        "rule": "max-len",
+        "message": "This line has a length of 107. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 1,
+        "rule": "max-len",
+        "message": "This line has a length of 102. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 16,
+        "rule": "max-len",
+        "message": "This line has a length of 101. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 17,
+        "rule": "max-len",
+        "message": "This line has a length of 109. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 19,
+        "rule": "max-len",
+        "message": "This line has a length of 156. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 20,
+        "rule": "max-len",
+        "message": "This line has a length of 276. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 21,
+        "rule": "max-len",
+        "message": "This line has a length of 383. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 25,
+        "rule": "max-len",
+        "message": "This line has a length of 102. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 33,
+        "rule": "max-len",
+        "message": "This line has a length of 112. Maximum allowed is 100."
+      },
+      {
+        "file": "scripts/phase5-report.cjs",
+        "line": 38,
+        "rule": "max-len",
+        "message": "This line has a length of 2542. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 31,
+        "rule": "max-len",
+        "message": "This line has a length of 123. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 46,
+        "rule": "max-len",
+        "message": "This line has a length of 194. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 86,
+        "rule": "max-len",
+        "message": "This line has a length of 253. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 130,
+        "rule": "max-len",
+        "message": "This line has a length of 135. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 159,
+        "rule": "max-len",
+        "message": "This line has a length of 253. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 170,
+        "rule": "max-len",
+        "message": "This line has a length of 218. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 197,
+        "rule": "max-len",
+        "message": "This line has a length of 137. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 206,
+        "rule": "max-len",
+        "message": "This line has a length of 123. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 207,
+        "rule": "max-len",
+        "message": "This line has a length of 324. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 212,
+        "rule": "max-len",
+        "message": "This line has a length of 120. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 214,
+        "rule": "max-len",
+        "message": "This line has a length of 112. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 40,
+        "rule": "max-len",
+        "message": "This line has a length of 140. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 43,
+        "rule": "max-len",
+        "message": "This line has a length of 105. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 59,
+        "rule": "max-len",
+        "message": "This line has a length of 118. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 61,
+        "rule": "max-len",
+        "message": "This line has a length of 134. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 62,
+        "rule": "max-len",
+        "message": "This line has a length of 104. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 69,
+        "rule": "max-len",
+        "message": "This line has a length of 109. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 77,
+        "rule": "max-len",
+        "message": "This line has a length of 157. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 82,
+        "rule": "max-len",
+        "message": "This line has a length of 108. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 100,
+        "rule": "max-len",
+        "message": "This line has a length of 229. Maximum allowed is 100."
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 116,
+        "rule": "max-len",
+        "message": "This line has a length of 132. Maximum allowed is 100."
+      }
+    ],
+    "manualEvidence": []
+  },
+  {
+    "id": "CR-JS-004",
+    "title": "[JavaScript] Tách khai báo nhiều biến",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [
+      "one-var"
+    ],
+    "section": "Number Per Line",
+    "description": "parseCsv khai báo row, field, quoted, closed trong cùng statement.",
+    "fix": "Mỗi biến một declaration, giữ let khi cần gán lại.",
+    "findings": [
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 12,
+        "rule": "one-var",
+        "message": "Split 'let' declarations into multiple statements."
+      }
+    ],
+    "manualEvidence": []
+  },
+  {
+    "id": "CR-JS-005",
+    "title": "[JavaScript] Chuẩn hóa tên boolean và hằng cấu hình",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [],
+    "section": "Variables and Functions / Constants",
+    "description": "quoted, closed, percent, ok thiếu tiền tố boolean. api là endpoint cố định toàn script chưa dùng UPPER_SNAKE_CASE.",
+    "fix": "Đổi thành isQuoted/isClosed/isPercent/isSuccess và API_BASE_URL; không đổi mọi const sang uppercase.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 12,
+        "message": "let row = [], field = '', quoted = false, closed = false;"
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 38,
+        "message": "function number(value, label, line, percent = false) {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 11,
+        "message": "function showAlert(message, ok = false) {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 2,
+        "message": "const api = '/api/employees';"
+      }
+    ]
+  },
+  {
+    "id": "CR-JS-006",
+    "title": "[JavaScript] Loại bỏ nested ternary",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [],
+    "section": "if, if-else, ternary Statements",
+    "description": "updateSortLabels và phần chọn exit code của script audit dùng ternary lồng nhau.",
+    "fix": "Tách if/else hoặc helper có tên rõ nghĩa.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 130,
+        "message": "button.textContent = `${button.dataset.sortField === field ? (direction === 'asc' ? '▲ ' : '▼ ') : ''}${button.dataset.sortField}`;"
+      },
+      {
+        "file": "scripts/check-coding-rules.cjs",
+        "line": 101,
+        "message": "process.exitCode = [java, javascript].some(result => result.status === 'error') ? 2 :"
+      }
+    ]
+  },
+  {
+    "id": "CR-JS-007",
+    "title": "[JavaScript] Bắt Promise rejection ở Edit/Delete/View",
+    "priority": "P1",
+    "language": "javascript",
+    "rules": [],
+    "section": "Async Programming (Promises and Async/Await)",
+    "description": "openForm/removeEmployee/showDetails await fetch/response.json không có try/catch; onclick cũng không bắt rejection. response.ok không xử lý lỗi mạng/parse JSON. Đây là static finding, chưa giả lập runtime trong lượt này.",
+    "fix": "Bắt lỗi ở hàm hoặc caller, thông báo thân thiện và khôi phục UI. Thêm regression cho lỗi mạng/JSON. Test async đã có runner nhận rejection nên không áp catch máy móc cho test.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 151,
+        "message": "async function openForm(id = null) {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 185,
+        "message": "async function removeEmployee(id) {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 193,
+        "message": "async function showDetails(id) {"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 95,
+        "message": "view.onclick = () => showDetails(employee.id);"
+      }
+    ]
+  },
+  {
+    "id": "CR-JS-008",
+    "title": "[JavaScript] Thêm trailing comma cho literal nhiều dòng",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [],
+    "section": "Objects and Arrays",
+    "description": "filters/formPayload thiếu dấu phẩy cuối property của object literal nhiều dòng; config ESLint mới cũng thiếu ở nhiều literal. Rule này chưa bật trong config.",
+    "fix": "Bổ sung trailing comma cho object/array nhiều dòng; không áp dụng cho JSON.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 26,
+        "message": "email: $('searchEmail').value.trim()"
+      },
+      {
+        "file": "src/main/resources/static/app.js",
+        "line": 147,
+        "message": "email: value('email')"
+      },
+      {
+        "file": "eslint.config.cjs",
+        "line": 28,
+        "message": "'max-len': ['error', { code: 100, ignoreUrls: true }],"
+      }
+    ]
+  },
+  {
+    "id": "CR-JS-009",
+    "title": "[JavaScript] Dùng template literal thay nối chuỗi",
+    "priority": "P3",
+    "language": "javascript",
+    "rules": [],
+    "section": "Miscellaneous Practices",
+    "description": "Escape CSV dùng toán tử + để ghép dấu nháy.",
+    "fix": "Dùng template literal, giữ quote escaping và phòng CSV formula injection.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 113,
+        "message": "if (/^[\\s]*[=+@-]/.test(text)) text = \"'\" + text;"
+      },
+      {
+        "file": "src/main/resources/static/items-csv.js",
+        "line": 114,
+        "message": "return '\"' + text.replace(/\"/g, '\"\"') + '\"';"
+      }
+    ]
+  },
+  {
+    "id": "CR-TOOL-001",
+    "title": "[Quality gate] Hoàn thiện automation coding rules",
+    "priority": "P2",
+    "language": "tooling",
+    "rules": [],
+    "section": "REQ-CODE-003 / REQ-CODE-004",
+    "description": "Tooling là thay đổi local từ tác vụ trước bị ngắt. Chưa có workflow tự chạy sau push; config/report dẫn tới docs/coding-rules-automation.md chưa tồn tại. ESLint 9.39.5 báo deprecated khi cài; Node báo DEP0190 khi gọi Maven qua shell. Tham số hiện cố định, chưa có bằng chứng injection. Đây là cải tiến tooling, không cộng vào vi phạm source.",
+    "fix": "Viết mapping rule-to-check, đánh giá phiên bản hỗ trợ, kiểm thử báo cáo/lỗi công cụ/chống Issue trùng trước khi bật CI. Không tuyên bố full compliance từ tập rule hiện có.",
+    "findings": [],
+    "manualEvidence": [
+      {
+        "file": "config/checkstyle/checkstyle.xml",
+        "line": 5,
+        "message": "<!-- Rule-to-document mapping and manual-review gaps: docs/coding-rules-automation.md. -->"
+      },
+      {
+        "file": "scripts/coding-report.cjs",
+        "line": 90,
+        "message": "'Mapping: docs/coding-rules-automation.md. Functional tests run separately.', ''"
+      },
+      {
+        "file": "scripts/check-coding-rules.cjs",
+        "line": 29,
+        "message": "], { encoding: 'utf8', shell: process.platform === 'win32', timeout: 600000 });"
+      },
+      {
+        "file": "package.json",
+        "line": 11,
+        "message": "\"eslint\": \"9.39.5\","
+      }
+    ]
+  }
+]

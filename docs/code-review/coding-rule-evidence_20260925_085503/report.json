@@ -1,0 +1,1089 @@
+{
+  "schemaVersion": 1,
+  "sha": "00ca6b15113b0761dd86667010ee120105d53653",
+  "branch": "main_thanhtung",
+  "createdAt": "2026-09-25T01:41:25.650Z",
+  "languages": {
+    "java": {
+      "status": "violations",
+      "files": [
+        "src/main/java/vn/tungxeng/hr/config/CorsConfig.java",
+        "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+        "src/main/java/vn/tungxeng/hr/dto/EmployeeListResponse.java",
+        "src/main/java/vn/tungxeng/hr/dto/EmployeeRequest.java",
+        "src/main/java/vn/tungxeng/hr/dto/EmployeeResponse.java",
+        "src/main/java/vn/tungxeng/hr/dto/ErrorResponse.java",
+        "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+        "src/main/java/vn/tungxeng/hr/exception/BusinessException.java",
+        "src/main/java/vn/tungxeng/hr/exception/GlobalExceptionHandler.java",
+        "src/main/java/vn/tungxeng/hr/exception/NotFoundException.java",
+        "src/main/java/vn/tungxeng/hr/HrApplication.java",
+        "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+        "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+        "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+        "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+        "src/test/java/vn/tungxeng/hr/EmployeeApiIntegrationTest.java",
+        "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+        "src/test/java/vn/tungxeng/hr/HrApplicationSmokeTest.java"
+      ],
+      "findings": [
+        {
+          "file": "src/main/java/vn/tungxeng/hr/config/CorsConfig.java",
+          "line": 8,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 24,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 31,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 35,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 46,
+          "rule": "NeedBraces",
+          "message": "'if' construct must use '{}'s."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 53,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 58,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 63,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 68,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 74,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+          "line": 93,
+          "rule": "NeedBraces",
+          "message": "'if' construct must use '{}'s."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeListResponse.java",
+          "line": 5,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeRequest.java",
+          "line": 6,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeResponse.java",
+          "line": 6,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/dto/ErrorResponse.java",
+          "line": 6,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/dto/ErrorResponse.java",
+          "line": 14,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+          "line": 6,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+          "line": 34,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/exception/BusinessException.java",
+          "line": 3,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/exception/BusinessException.java",
+          "line": 4,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/exception/GlobalExceptionHandler.java",
+          "line": 18,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/exception/NotFoundException.java",
+          "line": 3,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/exception/NotFoundException.java",
+          "line": 4,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/HrApplication.java",
+          "line": 6,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/HrApplication.java",
+          "line": 8,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+          "line": 9,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+          "line": 10,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+          "line": 11,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 10,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 11,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 13,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 14,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 15,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 16,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+          "line": 17,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+          "line": 23,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+          "line": 29,
+          "rule": "MissingJavadocMethod",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+          "line": 99,
+          "rule": "NeedBraces",
+          "message": "'if' construct must use '{}'s."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+          "line": 100,
+          "rule": "NeedBraces",
+          "message": "'if' construct must use '{}'s."
+        },
+        {
+          "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+          "line": 127,
+          "rule": "NeedBraces",
+          "message": "'if' construct must use '{}'s."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 14,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 26,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 31,
+          "rule": "MethodName",
+          "message": "Name 'DB_SEED_001_002_fiftyRowsAndIdempotency' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 32,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 33,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 35,
+          "rule": "MethodName",
+          "message": "Name 'DB_SEED_003_businessRowPreventsDemoSeed' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 37,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 39,
+          "rule": "MethodName",
+          "message": "Name 'DB_SCH_004_005_uniqueAndRequiredFields' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 49,
+          "rule": "MethodName",
+          "message": "Name 'DB_TXN_001_002_003_004_commitRollbackDeleteAndConflict' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 52,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 56,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+          "line": 58,
+          "rule": "OneStatementPerLine",
+          "message": "Only one statement per line allowed."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeApiIntegrationTest.java",
+          "line": 15,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+          "line": 21,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+          "line": 30,
+          "rule": "MethodName",
+          "message": "Name 'BE_SVC_004_createTrimsAndSavesOnce' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+          "line": 39,
+          "rule": "MethodName",
+          "message": "Name 'BE_SVC_005_duplicateDoesNotSave' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+          "line": 46,
+          "rule": "MethodName",
+          "message": "Name 'BE_SVC_008_missingGetAndDelete' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+          "line": 52,
+          "rule": "MethodName",
+          "message": "Name 'BE_SVC_009_csvEscapesUnicodeQuotesAndNulls' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+          "line": 59,
+          "rule": "MethodName",
+          "message": "Name 'BE_SVC_010_emptyCsv' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        },
+        {
+          "file": "src/test/java/vn/tungxeng/hr/HrApplicationSmokeTest.java",
+          "line": 11,
+          "rule": "MissingJavadocType",
+          "message": "Missing a Javadoc comment."
+        }
+      ]
+    },
+    "javascript": {
+      "status": "violations",
+      "files": [
+        "eslint.config.cjs",
+        "scripts/check-coding-rules.cjs",
+        "scripts/coding-report.cjs",
+        "e2e/all-cases.spec.js",
+        "e2e/employee.helpers.js",
+        "e2e/employee.spec.js",
+        "e2e/items-csv.spec.js",
+        "playwright.config.js",
+        "scripts/phase5-report.cjs",
+        "src/main/resources/static/app.js",
+        "src/main/resources/static/items-csv.js"
+      ],
+      "findings": [
+        {
+          "file": "scripts/check-coding-rules.cjs",
+          "line": 76,
+          "rule": "max-len",
+          "message": "This line has a length of 136. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/all-cases.spec.js",
+          "line": 2,
+          "rule": "max-len",
+          "message": "This line has a length of 102. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/all-cases.spec.js",
+          "line": 75,
+          "rule": "max-len",
+          "message": "This line has a length of 123. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/all-cases.spec.js",
+          "line": 100,
+          "rule": "max-len",
+          "message": "This line has a length of 102. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/employee.helpers.js",
+          "line": 3,
+          "rule": "jsdoc/require-jsdoc",
+          "message": "Missing JSDoc comment."
+        },
+        {
+          "file": "e2e/employee.helpers.js",
+          "line": 16,
+          "rule": "jsdoc/require-jsdoc",
+          "message": "Missing JSDoc comment."
+        },
+        {
+          "file": "e2e/employee.helpers.js",
+          "line": 22,
+          "rule": "jsdoc/require-jsdoc",
+          "message": "Missing JSDoc comment."
+        },
+        {
+          "file": "e2e/employee.helpers.js",
+          "line": 23,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "e2e/employee.helpers.js",
+          "line": 28,
+          "rule": "jsdoc/require-jsdoc",
+          "message": "Missing JSDoc comment."
+        },
+        {
+          "file": "e2e/employee.spec.js",
+          "line": 2,
+          "rule": "max-len",
+          "message": "This line has a length of 102. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/employee.spec.js",
+          "line": 71,
+          "rule": "max-len",
+          "message": "This line has a length of 112. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/employee.spec.js",
+          "line": 97,
+          "rule": "max-len",
+          "message": "This line has a length of 102. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/employee.spec.js",
+          "line": 112,
+          "rule": "max-len",
+          "message": "This line has a length of 101. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/items-csv.spec.js",
+          "line": 4,
+          "rule": "max-len",
+          "message": "This line has a length of 147. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/items-csv.spec.js",
+          "line": 9,
+          "rule": "max-len",
+          "message": "This line has a length of 103. Maximum allowed is 100."
+        },
+        {
+          "file": "e2e/items-csv.spec.js",
+          "line": 13,
+          "rule": "max-len",
+          "message": "This line has a length of 161. Maximum allowed is 100."
+        },
+        {
+          "file": "playwright.config.js",
+          "line": 11,
+          "rule": "max-len",
+          "message": "This line has a length of 107. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 1,
+          "rule": "max-len",
+          "message": "This line has a length of 102. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 14,
+          "rule": "curly",
+          "message": "Expected { after 'for-of'."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 16,
+          "rule": "max-len",
+          "message": "This line has a length of 101. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 17,
+          "rule": "max-len",
+          "message": "This line has a length of 109. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 19,
+          "rule": "max-len",
+          "message": "This line has a length of 156. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 20,
+          "rule": "max-len",
+          "message": "This line has a length of 276. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 21,
+          "rule": "max-len",
+          "message": "This line has a length of 383. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 25,
+          "rule": "max-len",
+          "message": "This line has a length of 102. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 33,
+          "rule": "max-len",
+          "message": "This line has a length of 112. Maximum allowed is 100."
+        },
+        {
+          "file": "scripts/phase5-report.cjs",
+          "line": 38,
+          "rule": "max-len",
+          "message": "This line has a length of 2542. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 31,
+          "rule": "max-len",
+          "message": "This line has a length of 123. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 33,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 46,
+          "rule": "max-len",
+          "message": "This line has a length of 194. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 49,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 62,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 63,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 68,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 86,
+          "rule": "max-len",
+          "message": "This line has a length of 253. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 115,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 115,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 123,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 123,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 130,
+          "rule": "max-len",
+          "message": "This line has a length of 135. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 136,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 136,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 139,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 139,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 156,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 159,
+          "rule": "max-len",
+          "message": "This line has a length of 253. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 164,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 170,
+          "rule": "max-len",
+          "message": "This line has a length of 218. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 172,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 186,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 188,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 188,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 196,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 196,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 197,
+          "rule": "max-len",
+          "message": "This line has a length of 137. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 200,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 200,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 204,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 204,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 206,
+          "rule": "max-len",
+          "message": "This line has a length of 123. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 206,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 206,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 207,
+          "rule": "max-len",
+          "message": "This line has a length of 324. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 207,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 207,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 211,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 211,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 211,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 212,
+          "rule": "max-len",
+          "message": "This line has a length of 120. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 212,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 212,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 212,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 214,
+          "rule": "max-len",
+          "message": "This line has a length of 112. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 214,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 214,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 215,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/app.js",
+          "line": 215,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 12,
+          "rule": "one-var",
+          "message": "Split 'let' declarations into multiple statements."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 16,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 16,
+          "rule": "brace-style",
+          "message": "Closing curly brace does not appear on the same line as the subsequent block."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 16,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 17,
+          "rule": "brace-style",
+          "message": "Statement inside of curly braces should be on next line."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 17,
+          "rule": "brace-style",
+          "message": "Closing curly brace does not appear on the same line as the subsequent block."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 17,
+          "rule": "brace-style",
+          "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 18,
+          "rule": "curly",
+          "message": "Expected { after 'else'."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 22,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 24,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 26,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 28,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 32,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 34,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 40,
+          "rule": "max-len",
+          "message": "This line has a length of 140. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 40,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 43,
+          "rule": "max-len",
+          "message": "This line has a length of 105. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 52,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 54,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 55,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 59,
+          "rule": "max-len",
+          "message": "This line has a length of 118. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 61,
+          "rule": "max-len",
+          "message": "This line has a length of 134. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 61,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 62,
+          "rule": "max-len",
+          "message": "This line has a length of 104. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 65,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 66,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 69,
+          "rule": "max-len",
+          "message": "This line has a length of 109. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 69,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 71,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 77,
+          "rule": "max-len",
+          "message": "This line has a length of 157. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 77,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 82,
+          "rule": "max-len",
+          "message": "This line has a length of 108. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 82,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 100,
+          "rule": "max-len",
+          "message": "This line has a length of 229. Maximum allowed is 100."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 113,
+          "rule": "curly",
+          "message": "Expected { after 'if' condition."
+        },
+        {
+          "file": "src/main/resources/static/items-csv.js",
+          "line": 116,
+          "rule": "max-len",
+          "message": "This line has a length of 132. Maximum allowed is 100."
+        }
+      ]
+    }
+  }
+}
