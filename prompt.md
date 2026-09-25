@@ -338,8 +338,13 @@ mỗi test method cover nhiều invalid inputs cùng lúc
 dùng @ParameterizedTest cho nhiều input cùng rule
 
 
-
-
 ---------------------------------------------------------------------------------
 34)
 hãy apply mock test để bao phủ hết logic giúp tôi, gom test theo behavior
+
+
+
+---------------------------------------------------------------------------------
+35)
+tôi muốn sau khi tạo pull request, file này sẽ được thực thi để check, nếu có error xảy ra thì ko cho merge request,
+hãy giúp tôi các lệnh thực thi
