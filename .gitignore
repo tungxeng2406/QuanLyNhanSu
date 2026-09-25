@@ -17,3 +17,13 @@ Thumbs.db
 node_modules/
 playwright-report/
 test-results/
+
+# Local environment and secret files
+.env
+.env.*
+secrets/
+*.pem
+vendor/proprietary/
+
+# Local binary output
+bin/

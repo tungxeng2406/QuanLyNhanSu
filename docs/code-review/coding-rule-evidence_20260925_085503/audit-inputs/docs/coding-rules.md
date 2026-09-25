@@ -93,8 +93,6 @@ MVP khong validate hoac expose cac field Employee ngoai 6 field tren.
 - Date format khi xuat: yyyy-MM-dd.
 
 ## 7. Security input standards
-
-- Repository ignore/context policy: [`.copilotignore` và `.gitignore`](../repository-ignore-policy.md). Hai file có mục đích khác nhau; kiểm tra dữ liệu staged và context chia sẻ độc lập. Không xem ignore là secret scanner hoặc bằng chứng tuân thủ coding rules. Các mẫu nhạy cảm trong `.copilotignore` chưa tự được áp dụng cho Git hoặc mọi công cụ AI.
 - BE tra ve JSON thuan, khong render HTML; FE chiu trach nhiem escape du lieu truoc khi chen vao DOM (tranh dung innerHTML voi du lieu tho, uu tien textContent hoac ham escape).
 - Khong ghep chuoi SQL thu cong.
 - Khong log du lieu nhay cam khong can thiet.

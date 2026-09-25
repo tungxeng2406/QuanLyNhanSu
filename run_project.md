@@ -8,6 +8,10 @@ Build/test instructions below do not prove coding-rule compliance. Run the confi
 
 ## 1. Prerequisites
 
+### Local files và ignore
+
+Xem [hướng dẫn .copilotignore/.gitignore](repository-ignore-policy.md). `.env`, `bin/`, `node_modules/`, `target/` và các output database/Playwright được liệt kê trong `.gitignore`; `.env.local`, `secrets/` và file PEM chưa được file này bao phủ. `.copilotignore` không cấu hình runtime và không chứng minh AI bị chặn đọc file. Việc có `.env` cũng không tự làm Spring Boot nạp file đó; dùng profile/biến môi trường theo cấu hình ứng dụng.
+
 Required:
 
 - Java 17.

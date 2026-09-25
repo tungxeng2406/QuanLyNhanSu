@@ -1,0 +1,147 @@
+[
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/config/CorsConfig.java",
+    "sha256": "4d57053eefa4408026d1287d8d8065168e53f9a9ddca6e1e926fbb16cb5235ab"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/controller/EmployeeController.java",
+    "sha256": "380c2b740596eaccaf4569ff9ed8afeeb06f2ae3b57bb9edf6299c134d540b70"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeListResponse.java",
+    "sha256": "a474e1a6b81aec8b5d99c9fd93015c20b9e5516c04fbc3a7b590189b1c3dac37"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeRequest.java",
+    "sha256": "329c8835d59135be14f05523e0c2c1b423ca3f14b9b0f89dd89479d0f9d6d808"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/dto/EmployeeResponse.java",
+    "sha256": "cf024cb4c6f4bf8724882aab23de92479c24148fd8cefa24ffc72f6411132f9d"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/dto/ErrorResponse.java",
+    "sha256": "7670943117ffc7cd3e69085377c06a138c8721d2be4975b297b864e6f885c4ba"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/entity/Employee.java",
+    "sha256": "7252f190c0a8f16c1583f7a76968cda35788abeddbeba602781b5b35861fa6a2"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/exception/BusinessException.java",
+    "sha256": "7d23b3182ad71af82c4876e11d61f9bc7d14722ec2d1b53abf77b425af09ae46"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/exception/GlobalExceptionHandler.java",
+    "sha256": "1064759ffff11eeffc407571db7036de25602cbc40ad2cbd496cba3662802cd1"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/exception/NotFoundException.java",
+    "sha256": "0195e17d42a14e09faf70664572c37a68ed440300fdfabbd51545e7b7b748ae3"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/HrApplication.java",
+    "sha256": "a68d564b44478320fb972bc82ce53eca8322680725a4b5089c4cba5c008ea276"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/repository/EmployeeRepository.java",
+    "sha256": "5582dbd89399dd4b5621bf7cd138bb912cd877f502ba0e917bb934620662a4b1"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/service/EmployeeService.java",
+    "sha256": "c135d99a952130a28f766abebe52ed7d812d16bcd101730855ca9c267ec7dbbb"
+  },
+  {
+    "language": "java",
+    "file": "src/main/java/vn/tungxeng/hr/service/impl/EmployeeServiceImpl.java",
+    "sha256": "969a65393d4ce78bedec8cc5d54aae306dbc49ded5c951ef414668dba7529e55"
+  },
+  {
+    "language": "java",
+    "file": "src/test/java/vn/tungxeng/hr/DatabaseIntegrationTest.java",
+    "sha256": "7a13eaf6bea32d7753b9940cd193df01ab527a5e34ca97a606ca58373810dba0"
+  },
+  {
+    "language": "java",
+    "file": "src/test/java/vn/tungxeng/hr/EmployeeApiIntegrationTest.java",
+    "sha256": "a602a3c55c28b9e740e4b688f371660fc63e6e4758040004355f6360187b1e32"
+  },
+  {
+    "language": "java",
+    "file": "src/test/java/vn/tungxeng/hr/EmployeeServiceUnitTest.java",
+    "sha256": "de27b01ec8b33c64433345b9b94494686142637a2044e53511555766bda00abc"
+  },
+  {
+    "language": "java",
+    "file": "src/test/java/vn/tungxeng/hr/HrApplicationSmokeTest.java",
+    "sha256": "4f6c60d1c3c088bd12810ccbe83d9af6fbb43eb684d587f79698bf74bf4fa014"
+  },
+  {
+    "language": "javascript",
+    "file": "eslint.config.cjs",
+    "sha256": "b0ebf2fedbfbaaaeb40cfc06c8f87ee7f074e2cfeb80bdfde7b463e2cdbdfe38"
+  },
+  {
+    "language": "javascript",
+    "file": "scripts/check-coding-rules.cjs",
+    "sha256": "00566c8e58ddbddfdb3753d699f323f21ece7cb141423fd2c908d3d9fac27d8c"
+  },
+  {
+    "language": "javascript",
+    "file": "scripts/coding-report.cjs",
+    "sha256": "47dbe2d9d27273d335c7e9c499b4183bdcccf9455f0527838baf3bf8107201c7"
+  },
+  {
+    "language": "javascript",
+    "file": "e2e/all-cases.spec.js",
+    "sha256": "3b1c175e807e6eb3c9d780a8f80fd013a7492e0c7fb2def93dfac0af7776faad"
+  },
+  {
+    "language": "javascript",
+    "file": "e2e/employee.helpers.js",
+    "sha256": "cb9ed8d939c6a138234d7a39a12a434a14b51ab4471ce251ed0a4a5e5b32ef8c"
+  },
+  {
+    "language": "javascript",
+    "file": "e2e/employee.spec.js",
+    "sha256": "eab18adb64627fb7b850209ab1e2e5d95cef7d40300649166a27723a5c0d1104"
+  },
+  {
+    "language": "javascript",
+    "file": "e2e/items-csv.spec.js",
+    "sha256": "633934e7aa0a8c5f20945a8b199165e56abc1d84e2bc6836574d13486f231e92"
+  },
+  {
+    "language": "javascript",
+    "file": "playwright.config.js",
+    "sha256": "43a50c97b1989eff45ed4e872759d390a8b93448892a324713d2aaddce2261fc"
+  },
+  {
+    "language": "javascript",
+    "file": "scripts/phase5-report.cjs",
+    "sha256": "135f8f52cc1123017a8c1eb02119abc6dfe011733390e878b66a658d9420f5ff"
+  },
+  {
+    "language": "javascript",
+    "file": "src/main/resources/static/app.js",
+    "sha256": "5e2d855468b0577399309f217621ccc1acbdf115500b17f1df4da00a9a7f22d8"
+  },
+  {
+    "language": "javascript",
+    "file": "src/main/resources/static/items-csv.js",
+    "sha256": "c491dfb86a1762a3c3212c804de269da7c7f4de86a564f8ca5c9a439324c5a81"
+  }
+]

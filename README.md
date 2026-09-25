@@ -1,5 +1,11 @@
 ## 1) HR Management
 
+## Cấu hình ignore và context AI
+
+Repository có [.gitignore](.gitignore) và [.copilotignore](.copilotignore) tại thư mục gốc. Git ignore hiện bao gồm `.env`, `.env.*`, `secrets/`, `*.pem`, `vendor/proprietary/`, `bin/`, `node_modules/` cùng các output build, database và Playwright. `.copilotignore` liệt kê cùng các mẫu nhạy cảm để giảm rủi ro đưa secret vào context AI; tuy nhiên, không mặc định bảo đảm Copilot hoặc Git có thực sự bỏ qua các mẫu đó nếu cấu hình client/organization không được bật.
+
+Xem [phạm vi, giới hạn và cách kiểm tra hai file ignore](repository-ignore-policy.md) trước khi commit hoặc đưa nội dung vào context AI.
+
 ## Mandatory coding-rule compliance
 
 Apply both [Java coding rules](docs_requirement/java-coding-rules.md) and [JavaScript coding rules](docs_requirement/javascript-coding-rules.md) to the relevant language files, following [project applicability, adaptations and acceptance gates](docs/coding-rules.md#mandatory-java-and-javascript-conventions).

@@ -1,0 +1,3322 @@
+[
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\eslint.config.cjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\scripts\\check-coding-rules.cjs",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 136. Maximum allowed is 100.",
+        "line": 76,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 76,
+        "endColumn": 137
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "/** Run both linters, preserve tool failures and publish local JSON/Markdown evidence. */\nconst fs = require('node:fs');\nconst path = require('node:path');\nconst { spawnSync } = require('node:child_process');\nconst { ESLint } = require('eslint');\nconst { parseJava, parseJavaScript, renderReport } = require('./coding-report.cjs');\nconst output = path.resolve('target/coding-rules');\n\n/**\n * Return a tool error without converting it into coding-rule findings.\n * @param {Error} error - Tool failure.\n * @returns {object} Incomplete language result.\n */\nfunction toolError(error) {\n  return { status: 'error', files: [], findings: [], error: error.message };\n}\n\n/**\n * Run Checkstyle and verify that every tracked/unignored Java source was scanned.\n * @param {Array<string>} inventory - Repository-owned file paths.\n * @returns {object} Complete Java result or an explicit tool error.\n */\nfunction checkJava(inventory) {\n  try {\n    const xmlPath = path.join(output, 'checkstyle.xml');\n    fs.rmSync(xmlPath, { force: true });\n    const result = spawnSync('mvn', [\n      '-B', 'checkstyle:check', '-Dcheckstyle.failOnViolation=false'\n    ], { encoding: 'utf8', shell: process.platform === 'win32', timeout: 600000 });\n    fs.writeFileSync(path.join(output, 'checkstyle.log'),\n      `${result.stdout || ''}\\n${result.stderr || ''}`);\n    if (result.error || result.status !== 0) {\n      throw new Error('Checkstyle execution failed; see checkstyle.log');\n    }\n    const parsed = parseJava(fs.readFileSync(xmlPath, 'utf8'));\n    const missing = inventory.filter(file => file.endsWith('.java') &&\n      !parsed.files.includes(file));\n    if (missing.length) {\n      throw new Error(`Java files outside Checkstyle scan: ${missing.join(', ')}`);\n    }\n    return parsed;\n  } catch (error) {\n    return toolError(error);\n  }\n}\n\n/**\n * Run ESLint on every applicable project JavaScript file, including test tooling.\n * @param {Array<string>} inventory - Repository-owned file paths.\n * @returns {Promise<object>} Complete JavaScript result or an explicit tool error.\n */\nasync function checkJavaScript(inventory) {\n  try {\n    const eslint = new ESLint();\n    const files = inventory.filter(file => /\\.(?:js|cjs|mjs)$/.test(file));\n    const results = await eslint.lintFiles(files);\n    fs.writeFileSync(path.join(output, 'eslint.json'), JSON.stringify(results, null, 2));\n    return parseJavaScript(results);\n  } catch (error) {\n    return toolError(error);\n  }\n}\n\n/**\n * Audit without modifying source; write reports even when one linter fails.\n * @returns {Promise<void>} Resolves after reports and the quality-gate exit code are set.\n * @throws {Error} When Git inventory or report output cannot be accessed.\n */\nasync function main() {\n  fs.mkdirSync(output, { recursive: true });\n  const listed = spawnSync('git', ['ls-files', '-z', '--cached', '--others',\n    '--exclude-standard'], { encoding: 'utf8' });\n  if (listed.status !== 0) {\n    throw new Error('Cannot enumerate repository files');\n  }\n  const excluded = /^(node_modules|target|playwright-report|test-results)\\/|^tests\\/unit_result\\/|^docs\\/(test-evidence|code-review)\\//;\n  const inventory = [...new Set(listed.stdout.split('\\0'))].filter(file =>\n    file && !excluded.test(file) && fs.existsSync(file));\n  const java = checkJava(inventory);\n  const javascript = await checkJavaScript(inventory);\n  const head = spawnSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' });\n  const branch = spawnSync('git', ['branch', '--show-current'], { encoding: 'utf8' });\n  const report = {\n    schemaVersion: 1, sha: process.env.GITHUB_SHA || head.stdout.trim(),\n    branch: process.env.GITHUB_REF_NAME || branch.stdout.trim(),\n    createdAt: new Date().toISOString(), languages: { java, javascript }\n  };\n  fs.writeFileSync(path.join(output, 'report.json'), JSON.stringify(report, null, 2));\n  const markdown = renderReport(report);\n  fs.writeFileSync(path.join(output, 'report.md'), markdown);\n  if (process.env.GITHUB_STEP_SUMMARY) {\n    const summary = Object.entries(report.languages).map(([name, result]) =>\n      `- ${name}: ${result.status}; ${result.findings.length} findings`).join('\\n');\n    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,\n      `## Coding rules\\n${summary}\\n\\nFull evidence: coding-rules artifact.\\n`);\n  }\n  console.log(JSON.stringify(Object.fromEntries(Object.entries(report.languages)\n    .map(([name, result]) => [name, {\n      status: result.status, files: result.files.length, findings: result.findings.length\n    }])), null, 2));\n  process.exitCode = [java, javascript].some(result => result.status === 'error') ? 2 :\n    [java, javascript].some(result => result.status === 'violations') ? 1 : 0;\n}\n\nmain().catch(error => {\n  console.error(error);\n  process.exitCode = 2;\n});\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\scripts\\coding-report.cjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\e2e\\all-cases.spec.js",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 102. Maximum allowed is 100.",
+        "line": 2,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 2,
+        "endColumn": 103
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 123. Maximum allowed is 100.",
+        "line": 75,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 75,
+        "endColumn": 124
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 102. Maximum allowed is 100.",
+        "line": 100,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 100,
+        "endColumn": 103
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "const { test, expect } = require('@playwright/test');\r\nconst { uniqueEmployee, createEmployee, deleteEmployee, clearSearch } = require('./employee.helpers');\r\n\r\nasync function openAdd(page) {\r\n  await page.locator('#addButton').evaluate((element) => element.click());\r\n}\r\n\r\nasync function fillForm(page, employee) {\r\n  await page.locator('#employeeCode').fill(employee.employeeCode);\r\n  await page.locator('#fullName').fill(employee.fullName);\r\n  await page.locator('#gender').selectOption(employee.gender);\r\n  await page.locator('#dateOfBirth').fill(employee.dateOfBirth);\r\n  await page.locator('#phone').fill(employee.phone);\r\n  await page.locator('#email').fill(employee.email);\r\n}\r\n\r\nasync function submitForm(page) {\r\n  await page.locator('#employeeForm').evaluate((form) => form.requestSubmit());\r\n  await page.waitForTimeout(700);\r\n}\r\n\r\ntest.beforeEach(async ({ page }) => {\r\n  await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });\n  await expect(page.getByRole('heading', { name: 'Employee Management' })).toBeVisible();\r\n  await expect(page.locator('#employeeRows tr').first()).toBeVisible({ timeout: 15000 });\r\n});\r\n\r\ntest('FE-LIST-002 empty state', async ({ page }) => {\r\n  await page.locator('#searchEmployeeCode').fill('ZZZ_NO_MATCH');\r\n  await expect(page.locator('#employeeRows')).toContainText('No employees found');\r\n});\r\n\r\ntest('FE-LIST-005/006/007 pagination', async ({ page }) => {\r\n  await expect(page.getByText(/Page 1 \\/ \\d+/)).toBeVisible();\r\n  await page.getByRole('button', { name: 'Next' }).click();\r\n  await expect(page.getByText(/Page 2 \\/ \\d+/)).toBeVisible();\r\n  const response = await page.request.get('/api/employees?page=9999&size=10');\r\n  expect(response.ok()).toBeTruthy();\r\n});\r\n\r\ntest('FE-SEARCH-007/008/009/010 search edge cases', async ({ page }) => {\r\n  await page.locator('#searchEmployeeCode').fill('ZZZ_NO_MATCH');\r\n  await expect(page.locator('#employeeRows')).toContainText('No employees found');\r\n  await page.locator('#searchEmployeeCode').fill('E001');\r\n  await page.locator('#searchGender').selectOption('MALE');\r\n  await expect(page.locator('#employeeRows tr').first()).toContainText('E001');\r\n  await page.locator('#resetButton').evaluate((element) => element.click());\r\n  await expect(page.locator('#searchEmployeeCode')).toHaveValue('');\r\n  await expect(page.locator('#employeeRows tr')).toHaveCount(10);\r\n});\r\n\r\ntest('FE-CREATE-005 invalid phone', async ({ page }) => {\r\n  await openAdd(page);\r\n  await page.locator('#employeeCode').fill('PW-INVALID-PHONE');\r\n  await page.locator('#fullName').fill('Invalid Phone');\r\n  await page.locator('#phone').fill('abc123');\r\n  expect(await page.locator('#phone').evaluate((element) => !element.checkValidity())).toBeTruthy();\r\n});\r\n\r\ntest('FE-CREATE-006 duplicate employee code', async ({ page }) => {\r\n  await openAdd(page);\r\n  await page.locator('#employeeCode').fill('E001');\r\n  await page.locator('#fullName').fill('Duplicate Employee');\r\n  await submitForm(page);\r\n  await expect(page.locator('#alert')).toContainText('Ma nhan vien da ton tai');\r\n});\r\n\r\ntest('FE-CREATE-007/008/009 input quality', async ({ page, request }) => {\r\n  const employee = uniqueEmployee({ fullName: '  Nguyen Test  ' });\r\n  let created;\r\n  try {\r\n    await openAdd(page);\r\n    await fillForm(page, employee);\r\n    await submitForm(page);\r\n    const result = await (await request.get(`/api/employees?employeeCode=${employee.employeeCode}&page=0&size=10`)).json();\r\n    created = result.content[0];\r\n    expect(created.fullName).toBe('Nguyen Test');\r\n  } finally {\r\n    await deleteEmployee(request, created?.id);\r\n  }\r\n  await openAdd(page);\r\n  await page.locator('#employeeCode').fill('PW-LONG');\r\n  await page.locator('#fullName').fill('x'.repeat(151));\r\n  expect(await page.locator('#fullName').inputValue()).toHaveLength(150);\r\n});\r\n\r\ntest('FE-UPDATE-001/002/003 edit flow', async ({ page, request }) => {\r\n  const employee = await createEmployee(request, uniqueEmployee());\r\n  try {\r\n    await page.reload({ waitUntil: 'domcontentloaded' });\r\n    await page.locator('#searchEmployeeCode').fill(employee.employeeCode);\r\n    await expect(page.locator('#employeeRows tr')).toHaveCount(1);\r\n    await page.locator('#employeeRows tr').getByRole('button', { name: 'Edit' }).click();\r\n    await expect(page.locator('#employeeCode')).toHaveValue(employee.employeeCode);\r\n    await expect(page.locator('#fullName')).toHaveValue(employee.fullName);\r\n    const updated = { ...employee, phone: '0911111111', email: 'updated@example.com' };\r\n    const updateResponse = await request.put(`/api/employees/${employee.id}`, { data: updated });\r\n    expect(updateResponse.status()).toBe(200);\r\n    await page.locator('#email').fill('invalid-email');\r\n    expect(await page.locator('#email').evaluate((element) => !element.checkValidity())).toBeTruthy();\r\n  } finally {\r\n    await deleteEmployee(request, employee.id);\r\n  }\r\n});\r\n\r\ntest('FE-UPDATE-004/005 duplicate and missing record', async ({ page, request }) => {\r\n  const first = await createEmployee(request, uniqueEmployee());\r\n  const second = await createEmployee(request, uniqueEmployee());\r\n  try {\r\n    const updatePayload = {\r\n      employeeCode: first.employeeCode,\r\n      fullName: second.fullName,\r\n      gender: second.gender,\r\n      dateOfBirth: second.dateOfBirth,\r\n      phone: second.phone,\r\n      email: second.email,\r\n    };\r\n    const duplicate = await request.put(`/api/employees/${second.id}`, { data: updatePayload });\r\n    expect(duplicate.status()).toBe(409);\r\n    const missing = await request.put('/api/employees/999999', { data: first });\r\n    expect(missing.status()).toBe(404);\r\n  } finally {\r\n    await deleteEmployee(request, first.id);\r\n    await deleteEmployee(request, second.id);\r\n  }\r\n});\r\n\r\ntest('FE-DELETE-001/002/003 delete flows', async ({ page, request }) => {\r\n  const employee = await createEmployee(request, uniqueEmployee());\r\n  await page.reload({ waitUntil: 'domcontentloaded' });\r\n  await page.locator('#searchEmployeeCode').fill(employee.employeeCode);\r\n  await expect(page.locator('#employeeRows tr')).toHaveCount(1);\r\n  page.once('dialog', (dialog) => dialog.dismiss());\r\n  await page.locator('#employeeRows tr').getByRole('button', { name: 'Delete' }).click();\r\n  expect((await request.get(`/api/employees/${employee.id}`)).status()).toBe(200);\r\n  page.once('dialog', (dialog) => dialog.accept());\r\n  await page.locator('#employeeRows tr').getByRole('button', { name: 'Delete' }).click();\r\n  await expect(page.locator('#employeeRows')).toContainText('No employees found');\r\n  expect((await request.delete('/api/employees/999999')).status()).toBe(404);\r\n});\r\n\r\ntest('FE-DETAIL-001/002 detail behavior', async ({ page, request }) => {\r\n  const employee = await createEmployee(request, uniqueEmployee());\r\n  try {\r\n    await page.reload({ waitUntil: 'domcontentloaded' });\r\n    await page.locator('#searchEmployeeCode').fill(employee.employeeCode);\r\n    await expect(page.locator('#employeeRows tr')).toHaveCount(1);\r\n    page.once('dialog', (dialog) => dialog.accept());\r\n    await page.locator('#employeeRows tr').getByRole('button', { name: 'View' }).click();\r\n    expect((await request.get('/api/employees/999999')).status()).toBe(404);\r\n  } finally {\r\n    await deleteEmployee(request, employee.id);\r\n  }\r\n});\r\n\r\ntest('FE-EXPORT-001/002/003 CSV export', async ({ page }) => {\r\n  const response = await page.request.get('/api/employees/export/csv');\r\n  expect(response.status()).toBe(200);\r\n  expect(await response.text()).toContain('employeeCode,fullName');\r\n  const filtered = await page.request.get('/api/employees/export/csv?employeeCode=ZZZ_NO_MATCH');\r\n  expect(filtered.status()).toBe(200);\r\n  expect(await filtered.text()).toContain('employeeCode,fullName');\r\n});\r\n\r\ntest('FE-ROBUST-002 SQL-like search and responsive UI', async ({ page }) => {\r\n  await page.locator('#searchFullName').fill(\"' OR 1=1 --\");\r\n  await expect(page.locator('#employeeRows')).toContainText('No employees found');\r\n  await page.setViewportSize({ width: 500, height: 800 });\r\n  await expect(page.getByRole('button', { name: 'Add Employee' })).toBeVisible();\r\n});\r\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\e2e\\employee.helpers.js",
+    "messages": [
+      {
+        "ruleId": "jsdoc/require-jsdoc",
+        "severity": 2,
+        "message": "Missing JSDoc comment.",
+        "line": 3,
+        "column": 1,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingJsDoc",
+        "endLine": 4,
+        "endColumn": 1,
+        "fix": {
+          "range": [
+            51,
+            51
+          ],
+          "text": "/**\n *\n */\n"
+        }
+      },
+      {
+        "ruleId": "jsdoc/require-jsdoc",
+        "severity": 2,
+        "message": "Missing JSDoc comment.",
+        "line": 16,
+        "column": 1,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingJsDoc",
+        "endLine": 17,
+        "endColumn": 1,
+        "fix": {
+          "range": [
+            438,
+            438
+          ],
+          "text": "/**\n *\n */\n"
+        }
+      },
+      {
+        "ruleId": "jsdoc/require-jsdoc",
+        "severity": 2,
+        "message": "Missing JSDoc comment.",
+        "line": 22,
+        "column": 1,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingJsDoc",
+        "endLine": 23,
+        "endColumn": 1,
+        "fix": {
+          "range": [
+            640,
+            640
+          ],
+          "text": "/**\n *\n */\n"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 23,
+        "column": 12,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 23,
+        "endColumn": 19,
+        "fix": {
+          "range": [
+            697,
+            704
+          ],
+          "text": "{return;}"
+        }
+      },
+      {
+        "ruleId": "jsdoc/require-jsdoc",
+        "severity": 2,
+        "message": "Missing JSDoc comment.",
+        "line": 28,
+        "column": 1,
+        "nodeType": "FunctionDeclaration",
+        "messageId": "missingJsDoc",
+        "endLine": 29,
+        "endColumn": 1,
+        "fix": {
+          "range": [
+            829,
+            829
+          ],
+          "text": "/**\n *\n */\n"
+        }
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 5,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 5,
+    "fixableWarningCount": 0,
+    "source": "const { expect } = require('@playwright/test');\r\n\r\nfunction uniqueEmployee(overrides = {}) {\r\n  const suffix = `${Date.now()}${Math.floor(Math.random() * 1000)}`.slice(-8);\r\n  return {\r\n    employeeCode: `PW${suffix}`,\r\n    fullName: `Playwright Employee ${suffix}`,\r\n    gender: 'OTHER',\r\n    dateOfBirth: '1990-01-10',\r\n    phone: `091${suffix.slice(-7)}`,\r\n    email: `playwright.${suffix}@example.com`,\r\n    ...overrides,\r\n  };\r\n}\r\n\r\nasync function createEmployee(request, employee) {\r\n  const response = await request.post('/api/employees', { data: employee });\r\n  expect(response.status()).toBe(201);\r\n  return response.json();\r\n}\r\n\r\nasync function deleteEmployee(request, id) {\r\n  if (!id) return;\r\n  const response = await request.delete(`/api/employees/${id}`);\r\n  expect([204, 404]).toContain(response.status());\r\n}\r\n\r\nasync function clearSearch(page) {\r\n  await page.locator('#resetButton').evaluate((element) => element.click());\r\n  await expect(page.locator('#searchEmployeeCode')).toHaveValue('');\r\n  await expect(page.locator('#searchFullName')).toHaveValue('');\r\n  await expect(page.locator('#searchGender')).toHaveValue('');\r\n  await expect(page.locator('#searchDateOfBirth')).toHaveValue('');\r\n  await expect(page.locator('#searchPhone')).toHaveValue('');\r\n  await expect(page.locator('#searchEmail')).toHaveValue('');\r\n}\r\n\r\nmodule.exports = { uniqueEmployee, createEmployee, deleteEmployee, clearSearch };\r\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\e2e\\employee.spec.js",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 102. Maximum allowed is 100.",
+        "line": 2,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 2,
+        "endColumn": 103
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 112. Maximum allowed is 100.",
+        "line": 71,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 71,
+        "endColumn": 113
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 102. Maximum allowed is 100.",
+        "line": 97,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 97,
+        "endColumn": 103
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 101. Maximum allowed is 100.",
+        "line": 112,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 112,
+        "endColumn": 102
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 4,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "const { test, expect } = require('@playwright/test');\r\nconst { uniqueEmployee, createEmployee, deleteEmployee, clearSearch } = require('./employee.helpers');\r\n\r\ntest.describe('Employee management UI', () => {\r\n  test.beforeEach(async ({ page }) => {\r\n    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });\n    await expect(page.getByRole('heading', { name: 'Employee Management' })).toBeVisible();\r\n    await expect(page.locator('#employeeRows tr').first()).toBeVisible({ timeout: 15000 });\r\n  });\r\n\r\n  test('renders the seeded employee list', async ({ page }) => {\r\n    await expect(page.locator('#employeeRows tr')).toHaveCount(10);\r\n    await expect(page.getByRole('button', { name: /employeeCode/i })).toBeVisible();\r\n    await expect(page.getByText(/Page 1 \\/ \\d+/)).toBeVisible();\r\n  });\r\n\r\n  test('auto-searches by employee code and clears safely', async ({ page }) => {\r\n    await searchAndWait(page, '#searchEmployeeCode', 'E001');\r\n    await expect(page.locator('#employeeRows tr')).toHaveCount(1, { timeout: 10000 });\r\n    await expect(page.locator('#employeeRows tr').first()).toContainText('E001');\r\n    await clearSearch(page);\r\n    await expect(page.locator('#employeeRows tr')).toHaveCount(10);\r\n  });\r\n\r\n  test('auto-searches by all six fields', async ({ page }) => {\r\n    const filters = [\r\n      ['#searchEmployeeCode', 'E001'],\r\n      ['#searchFullName', 'Nhan vien mau 2'],\r\n      ['#searchGender', 'MALE'],\r\n      ['#searchDateOfBirth', '1986-01-01'],\r\n      ['#searchPhone', '0900000002'],\r\n      ['#searchEmail', 'employee3@company.com'],\r\n    ];\r\n\r\n    for (const [selector, value] of filters) {\r\n      await clearSearch(page);\r\n      await searchAndWait(page, selector, value);\r\n      await expect(page.locator('#employeeRows tr')).not.toHaveCount(0);\r\n    }\r\n  });\r\n\r\n  test('opens and closes the add employee modal', async ({ page }) => {\r\n    await page.getByRole('button', { name: 'Add Employee' }).click();\r\n    await expect(page.locator('#formPanel')).toBeVisible();\r\n    await page.locator('#closeFormButton').evaluate((element) => element.click());\r\n    await expect(page.locator('#formPanel')).toBeHidden();\r\n  });\r\n\r\n  test('rejects empty required fields', async ({ page }) => {\r\n    await page.getByRole('button', { name: 'Add Employee' }).click();\r\n    await page.locator('#employeeForm').evaluate((form) => form.requestSubmit());\r\n    await expect(page.locator('#employeeCode')).toBeFocused();\r\n    await expect(page.locator('#employeeCode')).toHaveJSProperty('validity.valid', false);\r\n    await expect(page.locator('#fullName')).toHaveJSProperty('validity.valid', false);\r\n  });\r\n\r\n  test('creates and deletes an isolated employee record', async ({ page, request }) => {\r\n    const employee = uniqueEmployee();\r\n    let created;\r\n    try {\r\n      await page.getByRole('button', { name: 'Add Employee' }).click();\r\n      await page.locator('#employeeCode').fill(employee.employeeCode);\r\n      await page.locator('#fullName').fill(employee.fullName);\r\n      await page.locator('#gender').selectOption(employee.gender);\r\n      await page.locator('#dateOfBirth').fill(employee.dateOfBirth);\r\n      await page.locator('#phone').fill(employee.phone);\r\n      await page.locator('#email').fill(employee.email);\r\n      await page.locator('#employeeForm').evaluate((form) => form.requestSubmit());\r\n      await expect(page.getByText('Employee saved successfully')).toBeVisible();\r\n\r\n      const response = await request.get(`/api/employees?employeeCode=${employee.employeeCode}&page=0&size=10`);\r\n      expect(response.ok()).toBeTruthy();\r\n      const result = await response.json();\r\n      expect(result.totalElements).toBe(1);\r\n      created = result.content[0];\r\n      expect(created.fullName).toBe(employee.fullName);\r\n    } finally {\r\n      await deleteEmployee(request, created?.id);\r\n    }\r\n  });\r\n});\r\n\r\nfunction searchParam(selector) {\r\n  return {\r\n    '#searchEmployeeCode': 'employeeCode',\r\n    '#searchFullName': 'fullName',\r\n    '#searchGender': 'gender',\r\n    '#searchDateOfBirth': 'dateOfBirth',\r\n    '#searchPhone': 'phone',\r\n    '#searchEmail': 'email',\r\n  }[selector];\r\n}\r\n\r\nasync function searchAndWait(page, selector, value) {\n  const responsePromise = page.waitForResponse((response) => {\n    const url = new URL(response.url());\n    return url.pathname === '/api/employees' && url.searchParams.get(searchParam(selector)) === value;\n  });\n  const field = page.locator(selector);\r\n  if (await field.evaluate((element) => element.tagName === 'SELECT')) {\r\n    await field.selectOption(value);\r\n  } else {\r\n    await field.fill(value);\r\n  }\r\n  const response = await responsePromise;\n  expect(response.status()).toBe(200);\n  const data = await response.json();\n  expect(data.content.length).toBeGreaterThan(0);\n  for (const employee of data.content) {\n    expect(employee[searchParam(selector)].toLowerCase()).toContain(value.toLowerCase());\n  }\n  await expect(page.locator('#employeeRows tr').first()).toContainText(data.content[0].employeeCode);\n}\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\e2e\\items-csv.spec.js",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 147. Maximum allowed is 100.",
+        "line": 4,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 4,
+        "endColumn": 148
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 103. Maximum allowed is 100.",
+        "line": 9,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 9,
+        "endColumn": 104
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 161. Maximum allowed is 100.",
+        "line": 13,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 13,
+        "endColumn": 162
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 3,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "﻿const { test, expect } = require('@playwright/test');\nconst fs = require('node:fs/promises');\nconst header = 'No,Tên mặt hàng,Số lượng,Đơn giá,Thuế VAT (%)';\nconst upload = (page, text) => page.locator('#itemsCsvFile').setInputFiles({ name: 'items.csv', mimeType: 'text/csv', buffer: Buffer.from(text) });\n\ntest('import items, calculate VAT, export and reimport CSV', async ({ page }) => {\n  await page.goto('/', { waitUntil: 'domcontentloaded' });\n  await expect(page.locator('#importItemsButton')).toBeVisible();\n  await upload(page, '\\uFEFF' + header + '\\r\\n1,\"Giấy, \"\"A4\"\"\\nLoại 1\",2,75000,8%\\r\\n2,Bút,3,5000,10');\n  await expect(page.getByRole('dialog')).toBeVisible();\n  await expect(page.locator('#itemsRows tr')).toHaveCount(2);\n  await expect(page.locator('#itemsTotal')).toHaveText('178.500');\n  await expect(page.locator('#itemsRows tr').first().locator('td')).toHaveText(['1', 'Giấy, \"A4\"\\nLoại 1', '2', '75.000', '8%', '150.000', '12.000', '162.000']);\n  const downloadPromise = page.waitForEvent('download');\n  await page.locator('#exportItemsButton').click();\n  const download = await downloadPromise;\n  const csv = await fs.readFile(await download.path(), 'utf8');\n  expect(csv).toContain('\"Thuế VAT (%)\",\"Trước VAT\",\"Thuế VAT\",\"Sau VAT\"');\n  expect(csv).toContain('\"150000\",\"12000\",\"162000\"');\n  await page.keyboard.press('Escape');\n  await expect(page.getByRole('dialog')).not.toBeVisible();\n  await upload(page, csv);\n  await expect(page.locator('#itemsRows tr')).toHaveCount(2);\n  await expect(page.getByRole('dialog')).toBeVisible();\n});\n\ntest('invalid CSV reports errors and can retry the same file', async ({ page }) => {\n  await page.goto('/', { waitUntil: 'domcontentloaded' });\n  for (const [csv, message] of [\n    ['No,Name\\n1,Item', 'CSV cần các cột'],\n    [header, 'chưa có dữ liệu'],\n    [header + '\\n1,Item,-1,10,8', 'Số lượng phải là số không âm'],\n    [header + '\\n1,Item,1,10,101', '0–100%'],\n    [header + '\\n1,\"Item,1,10,8', 'thiếu dấu ngoặc kép'],\n    [header + '\\n1,Item,1,10', 'số cột không khớp']\n  ]) {\n    await upload(page, csv);\n    await expect(page.locator('#alert')).toContainText(message);\n    await expect(page.getByRole('dialog')).not.toBeVisible();\n  }\n  await upload(page, header + '\\n1,<img src=x onerror=alert(1)>,0,10,0');\n  await expect(page.getByRole('dialog')).toBeVisible();\n  await expect(page.locator('#itemsRows img')).toHaveCount(0);\n  await expect(page.locator('#itemsRows td').nth(5)).toHaveText('0');\n  await expect(page.locator('#itemsTotal')).toHaveText('0');\n  await page.getByRole('button', { name: 'Đóng', exact: true }).click();\n  await expect(page.getByRole('dialog')).not.toBeVisible();\n});\n\r\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\playwright.config.js",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 107. Maximum allowed is 100.",
+        "line": 11,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 11,
+        "endColumn": 108
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "const { defineConfig, devices } = require('@playwright/test');\r\n\r\nmodule.exports = defineConfig({\r\n  testDir: './e2e',\r\n  fullyParallel: false,\r\n  workers: 1,\n  // Cold browser startup on Windows is included in the per-test budget.\n  timeout: 60000,\n  forbidOnly: !!process.env.CI,\r\n  retries: process.env.CI ? 2 : 0,\r\n  reporter: [['list'], ['html', { open: 'never' }], ['json', { outputFile: 'test-results/results.json' }]],\n  use: {\r\n    baseURL: process.env.BASE_URL || 'http://localhost:8080',\r\n    trace: 'retain-on-failure',\r\n    screenshot: 'only-on-failure',\r\n    video: 'retain-on-failure',\r\n  },\r\n  projects: [\r\n    {\r\n      name: 'chromium',\r\n      use: { ...devices['Desktop Chrome'] },\r\n    },\r\n  ],\r\n});\r\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\scripts\\phase5-report.cjs",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 102. Maximum allowed is 100.",
+        "line": 1,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 1,
+        "endColumn": 103
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'for-of'.",
+        "line": 14,
+        "column": 36,
+        "nodeType": "ForOfStatement",
+        "messageId": "missingCurlyAfter",
+        "endLine": 14,
+        "endColumn": 70,
+        "fix": {
+          "range": [
+            754,
+            788
+          ],
+          "text": "{statuses[id] = [status, evidence];}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 101. Maximum allowed is 100.",
+        "line": 16,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 16,
+        "endColumn": 102
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 109. Maximum allowed is 100.",
+        "line": 17,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 17,
+        "endColumn": 110
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 156. Maximum allowed is 100.",
+        "line": 19,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 19,
+        "endColumn": 157
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 276. Maximum allowed is 100.",
+        "line": 20,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 20,
+        "endColumn": 277
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 383. Maximum allowed is 100.",
+        "line": 21,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 21,
+        "endColumn": 384
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 102. Maximum allowed is 100.",
+        "line": 25,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 25,
+        "endColumn": 103
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 112. Maximum allowed is 100.",
+        "line": 33,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 33,
+        "endColumn": 113
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 2542. Maximum allowed is 100.",
+        "line": 38,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 38,
+        "endColumn": 2543
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 10,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 1,
+    "fixableWarningCount": 0,
+    "source": "// Run after Maven and Playwright. Keep matrix status conservative: test names alone are not coverage.\nconst fs = require('node:fs');\nconst root = 'docs/test-evidence/phase5';\nfs.mkdirSync(root, { recursive: true });\nconst reports = fs.readdirSync('target/surefire-reports').filter(x => x.endsWith('.txt'));\nconst summary = reports.map(file => {\n  fs.copyFileSync(`target/surefire-reports/${file}`, `${root}/${file}`);\n  return fs.readFileSync(`${root}/${file}`, 'utf8').trim();\n}).join('\\n\\n');\nconst results = JSON.parse(fs.readFileSync('test-results/results.json', 'utf8'));\nfs.copyFileSync('test-results/results.json', `${root}/playwright-results.json`);\nconst statuses = {};\nfunction mark(ids, status, evidence) {\n  for (const id of ids.split(' ')) statuses[id] = [status, evidence];\n}\nmark('BE-CTL-001 BE-CTL-008 BE-CTL-010 BE-CTL-020 BE-CTL-022', 'PASS', 'EmployeeApiIntegrationTest');\nmark('BE-CTL-014', 'CHƯA CHẠY ĐỦ', 'Đã kiểm tra invalid JSON date; chưa đủ tất cả payload và field details');\nmark('BE-SVC-004 BE-SVC-005 BE-SVC-008 BE-SVC-009 BE-SVC-010', 'PASS', 'EmployeeServiceUnitTest');\nmark('DB-SCH-004 DB-SCH-005 DB-CON-002 DB-SEED-001 DB-SEED-002 DB-SEED-003 DB-TXN-001 DB-TXN-002 DB-TXN-003 DB-TXN-004', 'PASS', 'DatabaseIntegrationTest');\nmark('FE-LIST-002 FE-LIST-005 FE-SEARCH-001 FE-SEARCH-002 FE-SEARCH-003 FE-SEARCH-004 FE-SEARCH-005 FE-SEARCH-006 FE-SEARCH-007 FE-SEARCH-009 FE-CREATE-005 FE-CREATE-007 FE-CREATE-008 FE-UPDATE-003 FE-ROBUST-002', 'PASS', 'Playwright assertions; xem playwright-results.json');\nmark('FE-LIST-001 FE-LIST-007 FE-SEARCH-008 FE-CREATE-001 FE-CREATE-002 FE-CREATE-003 FE-CREATE-004 FE-CREATE-006 FE-UPDATE-001 FE-UPDATE-002 FE-UPDATE-004 FE-UPDATE-005 FE-DELETE-001 FE-DELETE-002 FE-DELETE-003 FE-DETAIL-001 FE-DETAIL-002 FE-EXPORT-001 FE-EXPORT-002 FE-EXPORT-003 FE-ROBUST-005', 'CHƯA CHẠY ĐỦ', 'Test hiện có chỉ kiểm tra một phần; không suy ra PASS từ tên test');\nmark('FE-EXPORT-004', 'N/A', 'XLSX ngoài phạm vi MVP');\nconst backendFailed = /Failures: [1-9]|Errors: [1-9]/.test(summary);\nif (backendFailed || results.stats.unexpected || results.stats.skipped || results.stats.flaky) {\n  throw new Error('Review failed/skipped/flaky results before generating a passing coverage mapping');\n}\nconst counts = {};\nconst rows = [];\nfor (const area of ['BE', 'DB', 'FE']) {\n  const matrix = fs.readFileSync(`tests/unit/testcase_${area}.md`, 'utf8');\n  for (const match of matrix.matchAll(/^\\| ((?:BE|DB|FE)-[A-Z]+-\\d+) \\|/gm)) {\n    const id = match[1];\n    const [status, evidence] = statuses[id] || ['CHƯA CHẠY', 'Chưa có test tự động chứng minh đầy đủ case này'];\n    counts[status] = (counts[status] || 0) + 1;\n    rows.push(`| ${id} | ${status} | ${evidence} |`);\n  }\n}\nfs.writeFileSync('docs/phase_5_test_report.md', `# Phase 5 — Test report\\n\\nNgày chạy: 2026-09-24. Java 17, Spring Boot 3.5.5, H2 in-memory, Playwright Chromium, một worker.\\n\\n## Kết quả thực thi\\n\\n\\`\\`\\`text\\n${summary}\\n\\`\\`\\`\\n\\nPlaywright: ${results.stats.expected} pass, ${results.stats.unexpected} fail, ${results.stats.skipped} skipped, ${results.stats.flaky} flaky.\\n\\n## Lỗi và xử lý\\n\\n- Backend ban đầu: smoke test 1/1 pass. Sau khi thêm regression: 10 test, 2 fail.\\n- BE-CTL-008: dùng chung giới hạn 10000 của CSV cho list, khiến size=101 trả 200. Đã thêm giới hạn list 100; regression xác nhận HTTP 400 và EMP-400-001.\\n- Invalid JSON date: thiếu handler HttpMessageNotReadableException, bị catch-all trả 500. Đã trả 400 EMP-400-001, không lộ lỗi parser. Đây mới là một phần BE-CTL-014; chưa khẳng định toàn case pass.\\n- E2E ban đầu: 17 pass, 1 fail ở beforeEach của FE-LIST-002. Snapshot chỉ có phần đầu HTML; goto chờ commit quá sớm. Đã chờ domcontentloaded.\\n- Search helper trước đây có thể kiểm tra hàng cũ; đã chờ response khớp filter và xác nhận dữ liệu trả về.\\n- Unit test mới từng lỗi biên dịch do Mockito any() khớp hai overload delete; đã dùng any(Employee.class).\\n\\n## Đối chiếu matrix\\n\\n${Object.entries(counts).map(([s,n]) => `${s}: ${n}`).join('; ')}.\\n\\nPASS chỉ áp dụng khi assertion bao phủ kỳ vọng. CHƯA CHẠY ĐỦ là đã chạy một phần, vẫn chưa được tính pass. Nhiều tên E2E chứa nhiều ID nhưng không thực hiện đủ từng case. Các case chưa chạy là khoảng trống coverage, không phải test bị skip của runner. Chưa đạt Definition of Done toàn matrix.\\n\\n| Case | Trạng thái | Bằng chứng / lý do |\\n|---|---|---|\\n${rows.join('\\n')}\\n\\n## Bằng chứng và chạy lại\\n\\n- [Kết quả Playwright JSON](test-evidence/phase5/playwright-results.json).\\n- [Log regression trước sửa](test-evidence/phase5/backend-initial.log).\\n- [Lỗi E2E ban đầu](test-evidence/phase5/e2e-initial-failure.md).\\n- Surefire summaries được lưu tại test-evidence/phase5; XML gốc tại target/surefire-reports.\\n- HTML report: playwright-report/index.html.\\n- Hướng dẫn lệnh: [README](../README.md).\\n\\n## Giới hạn còn lại\\n\\nChưa có full coverage cho controller CRUD/validation/CORS, repository predicates, schema metadata/length/Unicode, restart H2 file, FE sort/history/XSS/double-submit/export timeout. FE-DETAIL-001 hiện chỉ hiển thị code/name/email/phone, còn thiếu gender/DOB so với matrix; cần regression đầy đủ trước khi nghiệm thu. Bộ E2E hiện có một số luồng update/export gọi API trực tiếp, không đủ bằng chứng thao tác UI.\\n`, 'utf8');\nconsole.log(counts);\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\src\\main\\resources\\static\\app.js",
+    "messages": [
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 123. Maximum allowed is 100.",
+        "line": 31,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 31,
+        "endColumn": 124
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 33,
+        "column": 17,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 33,
+        "endColumn": 40,
+        "fix": {
+          "range": [
+            1218,
+            1241
+          ],
+          "text": "{parameters.delete(key);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 194. Maximum allowed is 100.",
+        "line": 46,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 46,
+        "endColumn": 195
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 49,
+        "column": 25,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 49,
+        "endColumn": 45,
+        "fix": {
+          "range": [
+            1840,
+            1860
+          ],
+          "text": "{$(id).value = value;}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 62,
+        "column": 36,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 62,
+        "endColumn": 43,
+        "fix": {
+          "range": [
+            2306,
+            2313
+          ],
+          "text": "{return;}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 63,
+        "column": 23,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 63,
+        "endColumn": 73,
+        "fix": {
+          "range": [
+            2337,
+            2387
+          ],
+          "text": "{throw new Error(data.message || 'Request failed');}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 68,
+        "column": 36,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 68,
+        "endColumn": 61,
+        "fix": {
+          "range": [
+            2530,
+            2555
+          ],
+          "text": "{showAlert(error.message);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 253. Maximum allowed is 100.",
+        "line": 86,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 86,
+        "endColumn": 254
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 115,
+        "column": 28,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 115,
+        "endColumn": 29,
+        "fix": {
+          "range": [
+            4274,
+            4274
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 115,
+        "column": 55,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 115,
+        "endColumn": 56,
+        "fix": {
+          "range": [
+            4300,
+            4300
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 123,
+        "column": 24,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 123,
+        "endColumn": 25,
+        "fix": {
+          "range": [
+            4669,
+            4669
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 123,
+        "column": 51,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 123,
+        "endColumn": 52,
+        "fix": {
+          "range": [
+            4695,
+            4695
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 135. Maximum allowed is 100.",
+        "line": 130,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 130,
+        "endColumn": 136
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 136,
+        "column": 34,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 136,
+        "endColumn": 35,
+        "fix": {
+          "range": [
+            5144,
+            5144
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 136,
+        "column": 60,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 136,
+        "endColumn": 61,
+        "fix": {
+          "range": [
+            5169,
+            5169
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 139,
+        "column": 20,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 139,
+        "endColumn": 21,
+        "fix": {
+          "range": [
+            5204,
+            5204
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 139,
+        "column": 50,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 139,
+        "endColumn": 51,
+        "fix": {
+          "range": [
+            5233,
+            5233
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 156,
+        "column": 12,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 156,
+        "endColumn": 19,
+        "fix": {
+          "range": [
+            5695,
+            5702
+          ],
+          "text": "{return;}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 253. Maximum allowed is 100.",
+        "line": 159,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 159,
+        "endColumn": 254
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 164,
+        "column": 21,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 164,
+        "endColumn": 28,
+        "fix": {
+          "range": [
+            6133,
+            6140
+          ],
+          "text": "{return;}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 218. Maximum allowed is 100.",
+        "line": 170,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 170,
+        "endColumn": 219
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 172,
+        "column": 23,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 172,
+        "endColumn": 70,
+        "fix": {
+          "range": [
+            6557,
+            6604
+          ],
+          "text": "{throw new Error(data.message || 'Save failed');}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 186,
+        "column": 42,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 186,
+        "endColumn": 49,
+        "fix": {
+          "range": [
+            6951,
+            6958
+          ],
+          "text": "{return;}"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 188,
+        "column": 21,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 188,
+        "endColumn": 22,
+        "fix": {
+          "range": [
+            7052,
+            7052
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 188,
+        "column": 92,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 188,
+        "endColumn": 93,
+        "fix": {
+          "range": [
+            7122,
+            7122
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 196,
+        "column": 21,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 196,
+        "endColumn": 22,
+        "fix": {
+          "range": [
+            7341,
+            7341
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 196,
+        "column": 60,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 196,
+        "endColumn": 61,
+        "fix": {
+          "range": [
+            7379,
+            7379
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 137. Maximum allowed is 100.",
+        "line": 197,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 197,
+        "endColumn": 138
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 200,
+        "column": 22,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 200,
+        "endColumn": 23,
+        "fix": {
+          "range": [
+            7548,
+            7548
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 200,
+        "column": 54,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 200,
+        "endColumn": 55,
+        "fix": {
+          "range": [
+            7579,
+            7579
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 204,
+        "column": 34,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 204,
+        "endColumn": 35,
+        "fix": {
+          "range": [
+            7698,
+            7698
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 204,
+        "column": 85,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 204,
+        "endColumn": 86,
+        "fix": {
+          "range": [
+            7748,
+            7748
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 123. Maximum allowed is 100.",
+        "line": 206,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 206,
+        "endColumn": 124
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 206,
+        "column": 94,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 206,
+        "endColumn": 95,
+        "fix": {
+          "range": [
+            7927,
+            7927
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 206,
+        "column": 120,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 206,
+        "endColumn": 121,
+        "fix": {
+          "range": [
+            7952,
+            7952
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 324. Maximum allowed is 100.",
+        "line": 207,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 207,
+        "endColumn": 325
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 207,
+        "column": 107,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 207,
+        "endColumn": 108,
+        "fix": {
+          "range": [
+            8065,
+            8065
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 207,
+        "column": 321,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 207,
+        "endColumn": 322,
+        "fix": {
+          "range": [
+            8278,
+            8278
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 211,
+        "column": 37,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 211,
+        "endColumn": 38,
+        "fix": {
+          "range": [
+            8444,
+            8444
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 211,
+        "column": 76,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 211,
+        "endColumn": 88,
+        "fix": {
+          "range": [
+            8482,
+            8494
+          ],
+          "text": "{closeForm();}"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 211,
+        "column": 89,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 211,
+        "endColumn": 90,
+        "fix": {
+          "range": [
+            8495,
+            8495
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 120. Maximum allowed is 100.",
+        "line": 212,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 212,
+        "endColumn": 121
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 212,
+        "column": 49,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 212,
+        "endColumn": 50,
+        "fix": {
+          "range": [
+            8548,
+            8548
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 212,
+        "column": 105,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 212,
+        "endColumn": 117,
+        "fix": {
+          "range": [
+            8603,
+            8615
+          ],
+          "text": "{closeForm();}"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 212,
+        "column": 118,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 212,
+        "endColumn": 119,
+        "fix": {
+          "range": [
+            8616,
+            8616
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 112. Maximum allowed is 100.",
+        "line": 214,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 214,
+        "endColumn": 113
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 214,
+        "column": 35,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 214,
+        "endColumn": 36,
+        "fix": {
+          "range": [
+            8710,
+            8710
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 214,
+        "column": 111,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 214,
+        "endColumn": 112,
+        "fix": {
+          "range": [
+            8785,
+            8785
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 215,
+        "column": 43,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 215,
+        "endColumn": 44,
+        "fix": {
+          "range": [
+            8832,
+            8832
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 215,
+        "column": 69,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 215,
+        "endColumn": 70,
+        "fix": {
+          "range": [
+            8857,
+            8857
+          ],
+          "text": "\n"
+        }
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 50,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 39,
+    "fixableWarningCount": 0,
+    "source": "const state = { page: 0, size: 10, sort: 'employeeCode,asc', editingId: null, saving: false };\r\nconst api = '/api/employees';\r\nconst $ = (id) => document.getElementById(id);\r\nconst textSearchIds = ['searchEmployeeCode', 'searchFullName', 'searchPhone', 'searchEmail'];\r\nconst allSearchIds = [...textSearchIds, 'searchGender', 'searchDateOfBirth'];\r\nlet searchTimer;\r\nlet loadSequence = 0;\r\n\r\n$('formPanel').hidden = true;\r\n\r\nfunction showAlert(message, ok = false) {\r\n  const element = $('alert');\r\n  element.hidden = false;\r\n  element.textContent = message;\r\n  element.style.background = ok ? '#d9efe4' : '#f8d9d2';\r\n  element.style.color = ok ? '#267a5a' : '#8d3e31';\r\n}\r\n\r\nfunction filters() {\r\n  return {\r\n    employeeCode: $('searchEmployeeCode').value.trim(),\r\n    fullName: $('searchFullName').value.trim(),\r\n    gender: $('searchGender').value,\r\n    dateOfBirth: $('searchDateOfBirth').value,\r\n    phone: $('searchPhone').value.trim(),\r\n    email: $('searchEmail').value.trim()\r\n  };\r\n}\r\n\r\nfunction query(extra = {}) {\r\n  const parameters = new URLSearchParams({ ...filters(), page: state.page, size: state.size, sort: state.sort, ...extra });\r\n  for (const [key, value] of [...parameters]) {\r\n    if (!value) parameters.delete(key);\r\n  }\r\n  return parameters;\r\n}\r\n\r\nfunction writeUrlState() {\r\n  const url = new URL(window.location.href);\r\n  url.search = query().toString();\r\n  window.history.replaceState({}, '', url);\r\n}\r\n\r\nfunction readUrlState() {\r\n  const parameters = new URLSearchParams(window.location.search);\r\n  const parameterNames = { searchEmployeeCode: 'employeeCode', searchFullName: 'fullName', searchGender: 'gender', searchDateOfBirth: 'dateOfBirth', searchPhone: 'phone', searchEmail: 'email' };\r\n  for (const id of allSearchIds) {\r\n    const value = parameters.get(parameterNames[id]);\r\n    if (value !== null) $(id).value = value;\r\n  }\r\n  state.page = Math.max(Number(parameters.get('page') || 0), 0);\r\n  state.size = Math.min(Math.max(Number(parameters.get('size') || 10), 1), 100);\r\n  state.sort = parameters.get('sort') || 'employeeCode,asc';\r\n}\r\n\r\nasync function load() {\r\n  const sequence = ++loadSequence;\r\n  try {\r\n    writeUrlState();\r\n    const response = await fetch(`${api}?${query()}`);\r\n    const data = await response.json();\r\n    if (sequence !== loadSequence) return;\r\n    if (!response.ok) throw new Error(data.message || 'Request failed');\r\n    renderRows(data.content);\r\n    renderPagination(data);\r\n    updateSortLabels();\r\n  } catch (error) {\r\n    if (sequence === loadSequence) showAlert(error.message);\r\n  }\r\n}\r\n\r\nfunction renderRows(rows) {\r\n  const body = $('employeeRows');\r\n  body.replaceChildren();\r\n  if (!rows.length) {\r\n    const row = document.createElement('tr');\r\n    const cell = document.createElement('td');\r\n    cell.colSpan = 7;\r\n    cell.textContent = 'No employees found';\r\n    row.append(cell);\r\n    body.append(row);\r\n    return;\r\n  }\r\n  rows.forEach((employee) => {\r\n    const row = document.createElement('tr');\r\n    [['employeeCode', employee.employeeCode], ['fullName', employee.fullName], ['gender', employee.gender || '-'], ['dateOfBirth', employee.dateOfBirth || '-'], ['phone', employee.phone || '-'], ['email', employee.email || '-']].forEach(([, value]) => {\r\n      const cell = document.createElement('td');\r\n      cell.textContent = value;\r\n      row.append(cell);\r\n    });\r\n    const actions = document.createElement('td');\r\n    actions.className = 'row-actions';\r\n    const view = document.createElement('button');\r\n    view.textContent = 'View';\r\n    view.onclick = () => showDetails(employee.id);\r\n    const edit = document.createElement('button');\r\n    edit.textContent = 'Edit';\r\n    edit.onclick = () => openForm(employee.id);\r\n    const remove = document.createElement('button');\r\n    remove.textContent = 'Delete';\r\n    remove.onclick = () => removeEmployee(employee.id);\r\n    actions.append(view, edit, remove);\r\n    row.append(actions);\r\n    body.append(row);\r\n  });\r\n}\r\n\r\nfunction renderPagination(data) {\r\n  const element = $('pagination');\r\n  element.replaceChildren();\r\n  const previous = document.createElement('button');\r\n  previous.className = 'button secondary';\r\n  previous.textContent = 'Previous';\r\n  previous.disabled = data.page === 0;\r\n  previous.onclick = () => { state.page -= 1; load(); };\r\n  const label = document.createElement('span');\r\n  label.textContent = `Page ${data.page + 1} / ${Math.max(data.totalPages, 1)}`;\r\n  label.style.padding = '11px 5px';\r\n  const next = document.createElement('button');\r\n  next.className = 'button secondary';\r\n  next.textContent = 'Next';\r\n  next.disabled = data.page + 1 >= data.totalPages;\r\n  next.onclick = () => { state.page += 1; load(); };\r\n  element.append(previous, label, next);\r\n}\r\n\r\nfunction updateSortLabels() {\r\n  const [field, direction] = state.sort.split(',');\r\n  document.querySelectorAll('[data-sort-field]').forEach((button) => {\r\n    button.textContent = `${button.dataset.sortField === field ? (direction === 'asc' ? '▲ ' : '▼ ') : ''}${button.dataset.sortField}`;\r\n  });\r\n}\r\n\r\nfunction debounceSearch() {\r\n  clearTimeout(searchTimer);\r\n  searchTimer = setTimeout(() => { state.page = 0; load(); }, 300);\r\n}\r\n\r\nfunction value(id) { return $(id).value || null; }\r\nfunction formPayload() {\r\n  return {\r\n    employeeCode: value('employeeCode'),\r\n    fullName: value('fullName'),\r\n    gender: value('gender'),\r\n    dateOfBirth: value('dateOfBirth'),\r\n    phone: value('phone'),\r\n    email: value('email')\r\n  };\r\n}\r\n\r\nasync function openForm(id = null) {\r\n  state.editingId = id;\r\n  $('formPanel').hidden = false;\r\n  $('formTitle').textContent = id ? 'Edit Employee' : 'Add Employee';\r\n  $('employeeForm').reset();\r\n  if (!id) return;\r\n  const response = await fetch(`${api}/${id}`);\r\n  const employee = await response.json();\r\n  [['employeeCode', employee.employeeCode], ['fullName', employee.fullName], ['gender', employee.gender], ['dateOfBirth', employee.dateOfBirth], ['phone', employee.phone], ['email', employee.email]].forEach(([key, value]) => $(key).value = value || '');\r\n}\r\n\r\nasync function save(event) {\r\n  event.preventDefault();\r\n  if (state.saving) return;\r\n  state.saving = true;\r\n  const button = $('saveButton');\r\n  button.disabled = true;\r\n  button.textContent = 'Saving...';\r\n  try {\r\n    const response = await fetch(state.editingId ? `${api}/${state.editingId}` : api, { method: state.editingId ? 'PUT' : 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formPayload()) });\r\n    const data = await response.json();\r\n    if (!response.ok) throw new Error(data.message || 'Save failed');\r\n    closeForm();\r\n    showAlert('Employee saved successfully', true);\r\n    await load();\r\n  } catch (error) {\r\n    showAlert(error.message);\r\n  } finally {\r\n    state.saving = false;\r\n    button.disabled = false;\r\n    button.textContent = 'Save Employee';\r\n  }\r\n}\r\n\r\nasync function removeEmployee(id) {\r\n  if (!confirm('Delete this employee?')) return;\r\n  const response = await fetch(`${api}/${id}`, { method: 'DELETE' });\r\n  if (!response.ok) { const data = await response.json(); showAlert(data.message); return; }\r\n  showAlert('Employee deleted successfully', true);\r\n  load();\r\n}\r\n\r\nasync function showDetails(id) {\r\n  const response = await fetch(`${api}/${id}`);\r\n  const employee = await response.json();\r\n  if (!response.ok) { showAlert(employee.message); return; }\r\n  showAlert(`${employee.employeeCode} - ${employee.fullName} | ${employee.email || 'No email'} | ${employee.phone || 'No phone'}`, true);\r\n}\r\n\r\nfunction closeForm() { $('formPanel').hidden = true; }\r\n\r\nreadUrlState();\r\n$('filterForm').onsubmit = (event) => event.preventDefault();\r\n$('resetButton').onclick = () => { $('filterForm').reset(); state.page = 0; load(); };\r\ntextSearchIds.forEach((id) => $(id).addEventListener('input', debounceSearch));\r\n['searchGender', 'searchDateOfBirth'].forEach((id) => $(id).addEventListener('change', () => { state.page = 0; load(); }));\r\ndocument.querySelectorAll('[data-sort-field]').forEach((button) => button.addEventListener('click', () => { const field = button.dataset.sortField; const [currentField, direction] = state.sort.split(','); state.sort = `${field},${field === currentField && direction === 'asc' ? 'desc' : 'asc'}`; state.page = 0; load(); }));\r\n$('refreshButton').onclick = load;\r\n$('addButton').onclick = () => openForm();\r\n$('closeFormButton').onclick = closeForm;\r\n$('formPanel').onclick = (event) => { if (event.target === $('formPanel')) closeForm(); };\r\ndocument.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !$('formPanel').hidden) closeForm(); });\r\n$('employeeForm').onsubmit = (event) => save(event);\r\n$('exportButton').onclick = () => { window.location = `${api}/export/csv?${query({ page: 0, size: 10000 })}`; };\r\nwindow.addEventListener('popstate', () => { readUrlState(); load(); });\r\nload();\r\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "filePath": "D:\\CongNghe\\AI_Tech_Leader_POSCO\\Project_QuanLyNhanSu\\src\\main\\resources\\static\\items-csv.js",
+    "messages": [
+      {
+        "ruleId": "one-var",
+        "severity": 2,
+        "message": "Split 'let' declarations into multiple statements.",
+        "line": 12,
+        "column": 5,
+        "nodeType": "VariableDeclaration",
+        "messageId": "split",
+        "endLine": 12,
+        "endColumn": 62,
+        "fix": {
+          "range": [
+            414,
+            443
+          ],
+          "text": "; let field = ''; let quoted = false; let"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 16,
+        "column": 48,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 16,
+        "endColumn": 49,
+        "fix": {
+          "range": [
+            598,
+            598
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace does not appear on the same line as the subsequent block.",
+        "line": 16,
+        "column": 69,
+        "nodeType": "Punctuator",
+        "messageId": "nextLineClose",
+        "endLine": 16,
+        "endColumn": 70,
+        "fix": {
+          "range": [
+            619,
+            628
+          ],
+          "text": " "
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 16,
+        "column": 69,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 16,
+        "endColumn": 70,
+        "fix": {
+          "range": [
+            618,
+            618
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Statement inside of curly braces should be on next line.",
+        "line": 17,
+        "column": 30,
+        "nodeType": "Punctuator",
+        "messageId": "blockSameLine",
+        "endLine": 17,
+        "endColumn": 31,
+        "fix": {
+          "range": [
+            650,
+            650
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace does not appear on the same line as the subsequent block.",
+        "line": 17,
+        "column": 63,
+        "nodeType": "Punctuator",
+        "messageId": "nextLineClose",
+        "endLine": 17,
+        "endColumn": 64,
+        "fix": {
+          "range": [
+            683,
+            692
+          ],
+          "text": " "
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "severity": 2,
+        "message": "Closing curly brace should be on the same line as opening curly brace or on the line after the previous block.",
+        "line": 17,
+        "column": 63,
+        "nodeType": "Punctuator",
+        "messageId": "singleLineClose",
+        "endLine": 17,
+        "endColumn": 64,
+        "fix": {
+          "range": [
+            682,
+            682
+          ],
+          "text": "\n"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'else'.",
+        "line": 18,
+        "column": 14,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfter",
+        "endLine": 18,
+        "endColumn": 26,
+        "fix": {
+          "range": [
+            697,
+            709
+          ],
+          "text": "{field += ch;}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 22,
+        "column": 48,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 22,
+        "endColumn": 63,
+        "fix": {
+          "range": [
+            897,
+            912
+          ],
+          "text": "{rows.push(row);}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 24,
+        "column": 52,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 24,
+        "endColumn": 56,
+        "fix": {
+          "range": [
+            984,
+            988
+          ],
+          "text": "{i++;}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 26,
+        "column": 57,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 26,
+        "endColumn": 71,
+        "fix": {
+          "range": [
+            1055,
+            1069
+          ],
+          "text": "{quoted = true;}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 28,
+        "column": 35,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 28,
+        "endColumn": 89,
+        "fix": {
+          "range": [
+            1117,
+            1171
+          ],
+          "text": "{throw new Error('CSV có dấu ngoặc kép không hợp lệ.');}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 32,
+        "column": 17,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 32,
+        "endColumn": 66,
+        "fix": {
+          "range": [
+            1223,
+            1272
+          ],
+          "text": "{throw new Error('CSV thiếu dấu ngoặc kép đóng.');}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 34,
+        "column": 42,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 34,
+        "endColumn": 57,
+        "fix": {
+          "range": [
+            1335,
+            1350
+          ],
+          "text": "{rows.push(row);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 140. Maximum allowed is 100.",
+        "line": 40,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 40,
+        "endColumn": 141
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 40,
+        "column": 44,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 40,
+        "endColumn": 141,
+        "fix": {
+          "range": [
+            1552,
+            1649
+          ],
+          "text": "{throw new Error(`Dòng ${line}: ${label} phải là số không âm, dùng dấu chấm cho phần thập phân.`);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 105. Maximum allowed is 100.",
+        "line": 43,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 43,
+        "endColumn": 106
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 52,
+        "column": 16,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 52,
+        "endColumn": 23,
+        "fix": {
+          "range": [
+            2187,
+            2194
+          ],
+          "text": "{return;}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 54,
+        "column": 39,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 54,
+        "endColumn": 83,
+        "fix": {
+          "range": [
+            2243,
+            2287
+          ],
+          "text": "{throw new Error('Vui lòng chọn file .csv.');}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 55,
+        "column": 40,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 55,
+        "endColumn": 81,
+        "fix": {
+          "range": [
+            2327,
+            2368
+          ],
+          "text": "{throw new Error('File CSV tối đa 5 MB.');}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 118. Maximum allowed is 100.",
+        "line": 59,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 59,
+        "endColumn": 119
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 134. Maximum allowed is 100.",
+        "line": 61,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 61,
+        "endColumn": 135
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 61,
+        "column": 30,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 61,
+        "endColumn": 135,
+        "fix": {
+          "range": [
+            2772,
+            2877
+          ],
+          "text": "{indices[4] = actualHeaders.findIndex(value => ['thuế vat', 'vat (mặt hàng)'].includes(normalize(value)));}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 104. Maximum allowed is 100.",
+        "line": 62,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 62,
+        "endColumn": 105
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 65,
+        "column": 25,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 65,
+        "endColumn": 74,
+        "fix": {
+          "range": [
+            3083,
+            3132
+          ],
+          "text": "{throw new Error('CSV chưa có dữ liệu mặt hàng.');}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 66,
+        "column": 32,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 66,
+        "endColumn": 79,
+        "fix": {
+          "range": [
+            3164,
+            3211
+          ],
+          "text": "{throw new Error('CSV tối đa 10.000 mặt hàng.');}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 109. Maximum allowed is 100.",
+        "line": 69,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 69,
+        "endColumn": 110
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 69,
+        "column": 50,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 69,
+        "endColumn": 110,
+        "fix": {
+          "range": [
+            3341,
+            3401
+          ],
+          "text": "{throw new Error(`Dòng ${line}: số cột không khớp tiêu đề.`);}"
+        }
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 71,
+        "column": 27,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 71,
+        "endColumn": 100,
+        "fix": {
+          "range": [
+            3506,
+            3579
+          ],
+          "text": "{throw new Error(`Dòng ${line}: No và Tên mặt hàng không được để trống.`);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 157. Maximum allowed is 100.",
+        "line": 77,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 77,
+        "endColumn": 158
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 77,
+        "column": 98,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 77,
+        "endColumn": 158,
+        "fix": {
+          "range": [
+            3944,
+            4004
+          ],
+          "text": "{throw new Error(`Dòng ${line}: giá trị tính toán quá lớn.`);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 108. Maximum allowed is 100.",
+        "line": 82,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 82,
+        "endColumn": 109
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 82,
+        "column": 49,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 82,
+        "endColumn": 109,
+        "fix": {
+          "range": [
+            4267,
+            4327
+          ],
+          "text": "{throw new Error(`Dòng ${line}: giá trị tính toán quá lớn.`);}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 229. Maximum allowed is 100.",
+        "line": 100,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 100,
+        "endColumn": 230
+      },
+      {
+        "ruleId": "curly",
+        "severity": 2,
+        "message": "Expected { after 'if' condition.",
+        "line": 113,
+        "column": 38,
+        "nodeType": "IfStatement",
+        "messageId": "missingCurlyAfterCondition",
+        "endLine": 113,
+        "endColumn": 56,
+        "fix": {
+          "range": [
+            5721,
+            5739
+          ],
+          "text": "{text = \"'\" + text;}"
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "severity": 2,
+        "message": "This line has a length of 132. Maximum allowed is 100.",
+        "line": 116,
+        "column": 1,
+        "nodeType": "Program",
+        "messageId": "max",
+        "endLine": 116,
+        "endColumn": 133
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 36,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 26,
+    "fixableWarningCount": 0,
+    "source": "(() => {\n  const headers = ['No', 'Tên mặt hàng', 'Số lượng', 'Đơn giá', 'Thuế VAT (%)'];\n  const byId = id => document.getElementById(id);\n  const fileInput = byId('itemsCsvFile');\n  const dialog = byId('itemsDialog');\n  let items = [];\n\n  // CSV supports quoted commas, escaped quotes and multiline fields.\n  function parseCsv(text) {\n    text = text.replace(/^\\uFEFF/, '');\n    const rows = [];\n    let row = [], field = '', quoted = false, closed = false;\n    for (let i = 0; i < text.length; i++) {\n      const ch = text[i];\n      if (quoted) {\n        if (ch === '\"' && text[i + 1] === '\"') { field += '\"'; i++; }\n        else if (ch === '\"') { quoted = false; closed = true; }\n        else field += ch;\n      } else if (ch === ',' || ch === '\\n' || ch === '\\r') {\n        row.push(field); field = ''; closed = false;\n        if (ch !== ',') {\n          if (row.some(value => value.trim())) rows.push(row);\n          row = [];\n          if (ch === '\\r' && text[i + 1] === '\\n') i++;\n        }\n      } else if (ch === '\"' && field === '' && !closed) quoted = true;\n      else {\n        if (closed || ch === '\"') throw new Error('CSV có dấu ngoặc kép không hợp lệ.');\n        field += ch;\n      }\n    }\n    if (quoted) throw new Error('CSV thiếu dấu ngoặc kép đóng.');\n    row.push(field);\n    if (row.some(value => value.trim())) rows.push(row);\n    return rows;\n  }\n\n  function number(value, label, line, percent = false) {\n    const normalized = value.trim().replace(percent ? /%$/ : /$^/, '').trim();\n    if (!/^\\d+(\\.\\d+)?$/.test(normalized)) throw new Error(`Dòng ${line}: ${label} phải là số không âm, dùng dấu chấm cho phần thập phân.`);\n    const result = Number(normalized);\n    if (!Number.isFinite(result) || result > Number.MAX_SAFE_INTEGER || (percent && result > 100)) {\n      throw new Error(`Dòng ${line}: ${label} nằm ngoài phạm vi cho phép${percent ? ' (0–100%)' : ''}.`);\n    }\n    return result;\n  }\n\n  byId('importItemsButton').addEventListener('click', () => fileInput.click());\n  byId('closeItemsButton').addEventListener('click', () => dialog.close());\n  fileInput.addEventListener('change', async () => {\n    const file = fileInput.files[0];\n    if (!file) return;\n    try {\n      if (!/\\.csv$/i.test(file.name)) throw new Error('Vui lòng chọn file .csv.');\n      if (file.size > 5 * 1024 * 1024) throw new Error('File CSV tối đa 5 MB.');\n      const rows = parseCsv(await file.text());\n      const actualHeaders = rows.shift() || [];\n      const normalize = value => value.trim().normalize('NFC').toLocaleLowerCase('vi');\n      const indices = headers.map(header => actualHeaders.findIndex(value => normalize(value) === normalize(header)));\n      // Accept existing CSV templates and the short tax-rate heading.\n      if (indices[4] === -1) indices[4] = actualHeaders.findIndex(value => ['thuế vat', 'vat (mặt hàng)'].includes(normalize(value)));\n      if (indices.includes(-1) || new Set(actualHeaders.map(normalize)).size !== actualHeaders.length) {\n        throw new Error(`CSV cần các cột: ${headers.join(', ')}.`);\n      }\n      if (!rows.length) throw new Error('CSV chưa có dữ liệu mặt hàng.');\n      if (rows.length > 10000) throw new Error('CSV tối đa 10.000 mặt hàng.');\n      const parsed = rows.map((row, index) => {\n        const line = index + 2;\n        if (row.length !== actualHeaders.length) throw new Error(`Dòng ${line}: số cột không khớp tiêu đề.`);\n        const [no, name, qty, price, rate] = indices.map(i => row[i].trim());\n        if (!no || !name) throw new Error(`Dòng ${line}: No và Tên mặt hàng không được để trống.`);\n        const quantity = number(qty, 'Số lượng', line);\n        const unitPrice = number(price, 'Đơn giá', line);\n        const vatRate = number(rate, 'Thuế VAT (%)', line, true);\n        const total = quantity * unitPrice;\n        const vat = total * vatRate / 100;\n        if (!Number.isFinite(total) || total > Number.MAX_SAFE_INTEGER || !Number.isFinite(vat)) throw new Error(`Dòng ${line}: giá trị tính toán quá lớn.`);\n        const round = value => Math.round((value + Number.EPSILON) * 100) / 100;\n        const beforeVat = round(total);\n        const vatAmount = round(vat);\n        const afterVat = round(beforeVat + vatAmount);\n        if (afterVat > Number.MAX_SAFE_INTEGER) throw new Error(`Dòng ${line}: giá trị tính toán quá lớn.`);\n        return [no, name, quantity, unitPrice, vatRate, beforeVat, vatAmount, afterVat];\n      });\n      items = parsed;\n      const fragment = document.createDocumentFragment();\n      const format = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 20 });\n      for (const item of items) {\n        const tr = document.createElement('tr');\n        item.forEach((value, index) => {\n          const td = document.createElement('td');\n          td.textContent = index < 2 ? value : `${format.format(value)}${index === 4 ? '%' : ''}`;\n          tr.append(td);\n        });\n        fragment.append(tr);\n      }\n      byId('itemsRows').replaceChildren(fragment);\n      const totalAfterVat = items.reduce((sum, item) => sum + Math.round(item[7] * 100), 0) / 100;\n      byId('itemsTotal').textContent = format.format(totalAfterVat);\n      byId('itemsSummary').textContent = `${file.name} · ${items.length} mặt hàng · Trước VAT = Số lượng × Đơn giá; Thuế VAT = Trước VAT × Thuế VAT (%) / 100; Sau VAT = Trước VAT + Thuế VAT. Số tiền làm tròn 2 chữ số thập phân.`;\n      byId('alert').hidden = true;\n      dialog.showModal();\n    } catch (error) {\n      showAlert(error.message);\n    } finally {\n      fileInput.value = '';\n    }\n  });\n\n  byId('exportItemsButton').addEventListener('click', () => {\n    const escape = value => {\n      let text = String(value);\n      if (/^[\\s]*[=+@-]/.test(text)) text = \"'\" + text;\n      return '\"' + text.replace(/\"/g, '\"\"') + '\"';\n    };\n    const csv = [headers.concat(['Trước VAT', 'Thuế VAT', 'Sau VAT']), ...items].map(row => row.map(escape).join(',')).join('\\r\\n');\n    const url = URL.createObjectURL(new Blob(['\\uFEFF', csv], { type: 'text/csv;charset=utf-8;' }));\n    const link = document.createElement('a');\n    link.href = url;\n    link.download = 'mat-hang.csv';\n    document.body.append(link);\n    link.click();\n    link.remove();\n    setTimeout(() => URL.revokeObjectURL(url), 1000);\n  });\n})();\n",
+    "usedDeprecatedRules": [
+      {
+        "ruleId": "semi",
+        "replacedBy": [
+          "@stylistic/semi"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "semi",
+                "url": "https://eslint.style/rules/semi"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "no-tabs",
+        "replacedBy": [
+          "@stylistic/no-tabs"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "no-tabs",
+                "url": "https://eslint.style/rules/no-tabs"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "brace-style",
+        "replacedBy": [
+          "@stylistic/brace-style"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "brace-style",
+                "url": "https://eslint.style/rules/brace-style"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "indent",
+        "replacedBy": [
+          "@stylistic/indent"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "indent",
+                "url": "https://eslint.style/rules/indent"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "ruleId": "max-len",
+        "replacedBy": [
+          "@stylistic/max-len"
+        ],
+        "info": {
+          "message": "Formatting rules are being moved out of ESLint core.",
+          "url": "https://eslint.org/blog/2023/10/deprecating-formatting-rules/",
+          "deprecatedSince": "8.53.0",
+          "availableUntil": "11.0.0",
+          "replacedBy": [
+            {
+              "message": "ESLint Stylistic now maintains deprecated stylistic core rules.",
+              "url": "https://eslint.style/guide/migration",
+              "plugin": {
+                "name": "@stylistic/eslint-plugin",
+                "url": "https://eslint.style"
+              },
+              "rule": {
+                "name": "max-len",
+                "url": "https://eslint.style/rules/max-len"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
