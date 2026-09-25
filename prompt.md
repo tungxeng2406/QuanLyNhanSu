@@ -311,3 +311,35 @@ echo "node_modules/" >> .gitignore
 ---------------------------------------------------------------------------------
 31)
 Hãy update tất cả những document liên quan, update thêm thông tin .copilotignore, .gitignore này
+
+
+---------------------------------------------------------------------------------
+32) testcase_BE.md 
+tôi đang hỏi chỉ cho file test case của backend, đã có mock test chưa?
+
+Kết luận đúng nhất
+Nói đúng mực:
+
+“Có mock test cho backend, nhưng chưa phải tất cả testcase backend đều đã có mock test.”
+“Có những phần đã triển khai bằng Mockito/MockMvc, nhưng coverage chưa hoàn toàn tương ứng với toàn bộ matrix.”
+
+
+
+---------------------------------------------------------------------------------
+33)
+nếu tôi muốn tạo tất cả mock test cho những case đó, thì có dễ ko?
+
+Cách dễ nhất để làm
+Đừng viết test theo từng case riêng lẻ ngay
+Thay vào đó:
+
+nhóm theo behavior
+mỗi test method cover nhiều invalid inputs cùng lúc
+dùng @ParameterizedTest cho nhiều input cùng rule
+
+
+
+
+---------------------------------------------------------------------------------
+34)
+hãy apply mock test để bao phủ hết logic giúp tôi, gom test theo behavior
