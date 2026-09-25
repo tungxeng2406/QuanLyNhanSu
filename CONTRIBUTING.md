@@ -1,5 +1,13 @@
 # Contributing Guide
 
+## Ignore files và dữ liệu chia sẻ
+
+- Đọc [quy định ignore và hướng dẫn kiểm tra](repository-ignore-policy.md) trước khi stage file, tạo Issue/PR hoặc gửi context AI.
+- `.gitignore` hiện bỏ qua `.env`, `bin/`, `node_modules/` và các output đã liệt kê; file đã tracked không tự được bỏ theo dõi.
+- `.copilotignore` ở repository root chứa `.env*`, `secrets/`, `*.pem`, `vendor/proprietary/`. Những mẫu mở rộng này chưa có trong `.gitignore` và chưa chứng minh chính sách Copilot đã được bật.
+- Kiểm tra tên file staged và bằng chứng trước khi chia sẻ; dùng dữ liệu giả, không đưa secret vào prompt, log, ảnh hoặc nội dung Issue/PR.
+- Khi sửa ignore, mô tả mẫu thêm/bớt và kết quả `git check-ignore -v --no-index` trong PR. Xác minh Content exclusion riêng theo client và quyền GitHub thực tế.
+
 ## 1. Branch and PR flow
 - Tao branch theo mau: feature/<scope>, fix/<scope>, chore/<scope>.
 - Moi PR phai link requirement IDs va testcase IDs.

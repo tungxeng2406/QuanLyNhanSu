@@ -280,3 +280,34 @@ Hãy đưa 16 issue trong báo cáo lên GitHub của repository này, kiểm tr
 ---------------------------------------------------------------------------------
 28) 
 hãy tạo file /docs_requirement/create_issue_in_github.md, và hướng dẫn chi tiết step by step các bước giúp tôi
+
+
+
+
+---------------------------------------------------------------------------------
+29)
+hãy tạo giúp tôi nội dung file template ".github/PULL_REQUEST_TEMPLATE.md" đầy đủ chi tiết nhất
+
+
+---------------------------------------------------------------------------------
+30)
+# Create local .copilotignore in repository root
+touch .copilotignore
+
+# Add sensitive path exclusions to .copilotignore
+echo ".env*" >> .copilotignore
+echo "secrets/" >> .copilotignore
+echo "*.pem" >> .copilotignore
+echo "vendor/proprietary/" >> .copilotignore
+
+# Also enforce in standard .gitignore
+echo ".env" >> .gitignore
+echo "bin/" >> .gitignore
+echo "node_modules/" >> .gitignore
+
+
+
+
+---------------------------------------------------------------------------------
+31)
+Hãy update tất cả những document liên quan, update thêm thông tin .copilotignore, .gitignore này

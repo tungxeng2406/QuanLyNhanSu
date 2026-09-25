@@ -36,6 +36,10 @@ Tài liệu dành cho dự án **QuanLyNhanSu**, sử dụng Windows và PowerSh
 
 ## 2. Chuẩn bị nội dung trước khi đăng
 
+### Kiểm tra dữ liệu chuẩn bị chia sẻ
+
+Đọc [hướng dẫn ignore của repository](../repository-ignore-policy.md). `.gitignore` không lọc nội dung Issue, log, ảnh hoặc file đính kèm; `.copilotignore` không tự xác nhận context AI đã được loại trừ. Chỉ đưa bằng chứng đã bỏ secret và dữ liệu nhân viên thật lên GitHub. Với file chưa tracked, kiểm tra mẫu ignore trước khi commit; `.env*`, `secrets/`, `*.pem`, `vendor/proprietary/` hiện chỉ được liệt kê trong `.copilotignore`, còn `.gitignore` chỉ có `.env` cho nhóm cấu hình môi trường.
+
 ### Bước 1 — Xác định đúng repository và báo cáo
 
 Mở PowerShell trong thư mục dự án:
